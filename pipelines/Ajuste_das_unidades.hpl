@@ -1,0 +1,762 @@
+<pipeline>
+  <info>
+    <name>Ajuste_das_unidades</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <pipeline_status>0</pipeline_status>
+    <directory>/</directory>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2024/12/19 15:04:09.380</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2024/12/19 15:04:09.380</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Essa transformação utiliza uma conexão ao banco usando o MySQL, pois não funciona com a conexão padrão do mariadb</note>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
+      <width>656</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>231</backgroundcolorred>
+      <backgroundcolorgreen>211</backgroundcolorgreen>
+      <backgroundcolorblue>143</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>Verifica Unidades</from>
+      <to>Gera log</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Qtd Unid invalidas</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Verifica Unidades</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Gera log</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Corrige as Unidades</from>
+      <to>Qtd Unid invalidas</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Corrige as Unidades</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>/*_conversão ajuste das unidades*/
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'UNID'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'unid.'
+'bld',
+'07',
+'07',
+'21',
+'28',
+'51',
+'%',
+'0',
+'001',
+'01',
+'04',
+'06',
+'1',
+'13',
+'14',
+'15',
+'17',
+'18',
+'19',
+'1l',
+'24',
+'38',
+'4',
+'41',
+'42',
+'55',
+'71',
+'72',
+'77',
+'79',
+'83',
+'am',
+'am10',
+'am6',
+'at',
+'ba',
+'bal',
+'bb',
+'bd',
+'bd1',
+'bl',
+'br',
+'ca',
+'cd',
+'ce',
+'cl',
+'cr',
+'ct',
+'ct.',
+'ee',
+'emb',
+'en',
+'fr',
+'gl',
+'la20',
+'pr',
+'rl',
+'rl1',
+'ro',
+'rol',
+'sc1',
+'sc5',
+'sh',
+'sp',
+'tb',
+'un',
+'un1',
+'und',
+'und.',
+'uni',
+'unid',
+'unt',
+'a',
+'qt',
+'unid.',
+'dp'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'PC'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'pcs',
+'pcs.',
+'pe',
+'pec',
+'pã‡a',
+'pça',
+'par.'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'KIT'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'kit'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'SACO'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'sac',
+'sc'
+);
+
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CJ'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'jg'
+);
+
+
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'MILHEI'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'mil'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'FARDO'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'fd',
+'fd20',
+'fd5'
+);
+
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'PACOTE'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'pa',
+'par',
+'pc',
+'pct',
+'pares',
+'pr1',
+'pt',
+'pt1',
+'pt12',
+'pt15',
+'pa',
+'pt50',
+'pac',
+'pt10',
+'pt100',
+'pt20',
+'pt5',
+'pct05'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'DUZIA'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'dz12',
+'dz',
+'cx12'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CX'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'cx',
+'cx1',
+'cxs.',
+'cx36',
+'cx6',
+'cx4'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CX10'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'cx10'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CX20'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'cx20'
+);
+
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CX25'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'cx25'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CX3'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'cx3'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'CX5'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'cx5'
+);
+
+
+
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'LITRO'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'lit',
+'litro',
+'l',
+'lt'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'M'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'mt',
+'mts.'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'KG'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'kt',
+'gr',
+'kgs.'
+);
+
+
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'M2'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'m2'
+);
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'M3'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'am3'
+);
+
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Verifica Unidades</send_true_to>
+    <send_false_to>Modified JavaScript value</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>quant_de_unidades_fora_do_padrao</leftvalue>
+        <function>&lt;></function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>####0;-####0</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Gera log</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:\lixo\log_conversao</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extension>txt</extension>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>unidades_fora_do_padrao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>63</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+mensagem = 'Não existem Unidades não Válidas, nada a ajustar';
+Alert(mensagem)</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Modified JavaScript value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+mensagem = 'Log com as Unidades erradas gerado';
+Alert(mensagem)</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Qtd Unid invalidas</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <sql>SELECT DISTINCT
+COUNT(vvr_produtos.unidade_de_venda) as quant_de_unidades_fora_do_padrao
+FROM vvr_produtos
+WHERE
+NOT EXISTS ( SELECT 1 FROM app_business_unit u WHERE u.unity = vvr_produtos.unidade_de_venda)
+ORDER BY 1;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>quant_de_unidades_fora_do_padrao</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Qtd Unid invalidas</origin>
+        <comments>quant_de_unidades_fora_do_padrao</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Verifica Unidades</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <sql>SELECT DISTINCT
+vvr_produtos.unidade_de_venda as unidades_fora_do_padrao
+FROM vvr_produtos
+WHERE
+NOT EXISTS ( SELECT 1 FROM app_business_unit u WHERE u.unity = vvr_produtos.unidade_de_venda)
+ORDER BY 1;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>quant_de_unidades_fora_do_padrao</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Qtd Unid invalidas</origin>
+        <comments>quant_de_unidades_fora_do_padrao</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>unidades_fora_do_padrao</name>
+        <length>63</length>
+        <precision>-1</precision>
+        <origin>Verifica Unidades</origin>
+        <comments>unidades_fora_do_padrao</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>

@@ -1,0 +1,32 @@
+{
+  "rdbms": {
+    "MARIADB": {
+      "databaseName": "base_conversoes",
+      "pluginId": "MARIADB",
+      "accessType": 0,
+      "hostname": "127.0.0.1",
+      "password": "Encrypted 5968634a47633169466579617042675388a8e3a11affc191f20ca563c6aafaf7",
+      "pluginName": "MariaDB",
+      "port": "3307",
+      "driverClassName": "Mysql 8+",
+      "attributes": {
+        "SUPPORTS_TIMESTAMP_DATA_TYPE": "Y",
+        "STREAM_RESULTS": "N",
+        "EXTRA_OPTION_MARIADB.defaultFetchSize": "500000",
+        "EXTRA_OPTION_MARIADB.zeroDateTimeBehaviorValue": "CONVERT_TO_NULL",
+        "FORCE_IDENTIFIERS_TO_LOWERCASE": "N",
+        "PRESERVE_RESERVED_WORD_CASE": "Y",
+        "FORCE_IDENTIFIERS_TO_UPPERCASE": "N",
+        "QUOTE_ALL_FIELDS": "N",
+        "EXTRA_OPTION_MARIADB.allowMultiQueries": "true",
+        "SUPPORTS_BOOLEAN_DATA_TYPE": "Y",
+        "SQL_CONNECT": "",
+        "EXTRA_OPTION_MARIADB.useCursorFetch": "true",
+        "PREFERRED_SCHEMA_NAME": ""
+      },
+      "manualUrl": "",
+      "username": "root"
+    }
+  },
+  "name": "DB_DEV_CONVERSAO"
+}
