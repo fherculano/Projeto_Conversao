@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
     <name>Conversão Armazem Brasil Produtos_base</name>
@@ -7,7 +8,6 @@
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
     <pipeline_status>0</pipeline_status>
-    <directory>/</directory>
     <parameters>
     </parameters>
     <capture_transform_performance>N</capture_transform_performance>
@@ -17,8 +17,6 @@
     <created_date>2024/12/11 16:18:52.087</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/12/11 16:18:52.087</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
-    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
@@ -73,11 +71,6 @@
       <to>Produtos_xls</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>vvr_produtos</from>
-      <to>Inclui chaves primarias</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <transform>
     <name>Dummy (do nothing)</name>
@@ -91,11 +84,9 @@
       <schema_name/>
     </partitioning>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>656</xloc>
+      <xloc>688</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -109,7 +100,6 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>
       <jsScript>
@@ -484,11 +474,9 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       </field>
     </fields>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>992</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -502,326 +490,237 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding>UTF-8</encoding>
-    <add_to_result_filenames>Y</add_to_result_filenames>
     <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_transform_name/>
-    <file>
-      <name>D:\_Conversao\Armazem Brasil\Origem Preparada\produtos.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <encoding>UTF-8</encoding>
+    <error_ignored>Y</error_ignored>
+    <error_line_files_extension>error</error_line_files_extension>
+    <error_line_skipped>N</error_line_skipped>
     <fields>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>codigo_do_produto</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>codigo_de_barras</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>descricao</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>referencia</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>ncm</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>cst</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>cest</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>preco_venda</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>peso_bruto</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>cfop</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>estoque</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>estoque_minimo</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>preco_custo</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>descricao_grupo</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>subgrupo</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>margem</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>unidade_de_venda</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>tax_table_01_ff_ii_nn</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>codigo_fornecedor_principal</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>razao_fornecedor_principal</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
+        <format>0</format>
+        <length>-1</length>
         <name>nome_da_marca</name>
-        <type>String</type>
-        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
         <repeat>N</repeat>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
       <field>
-        <name>tipo_do_produto</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
         <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
+        <length>-1</length>
+        <name>tipo_do_produto</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
       </field>
     </fields>
-    <sheets>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>Y</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
+    <file>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <name>D:\_Conversao\Armazem Brasil\Origem Preparada\produtos.xlsx</name>
+    </file>
+    <header>Y</header>
+    <ignore_fields>N</ignore_fields>
+    <limit>0</limit>
     <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
+    <noempty>Y</noempty>
+    <sheets>
+</sheets>
     <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
+    <stoponempty>N</stoponempty>
+    <strict_types>N</strict_types>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>560</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Recria a tabela vvr_produtos</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -830,57 +729,56 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>DROP TABLE IF EXISTS vvr_produtos;
 
 CREATE TABLE vvr_produtos
 (
-  codigo_do_produto INT
-, codigo_de_barras TINYTEXT
-, descricao TINYTEXT
-, referencia TINYTEXT
-, ncm TINYTEXT
-, cst TINYTEXT
-, cest TINYTEXT
+id INT AUTO_INCREMENT PRIMARY KEY
+, codigo_do_produto INT
+, codigo_de_barras TEXT
+, descricao TEXT
+, referencia TEXT
+, ncm TEXT
+, cst TEXT
+, cest TEXT
 , preco_venda DECIMAL(18, 2)
 , peso_bruto DECIMAL(18, 3)
-, cfop TINYTEXT
+, cfop TEXT
 , estoque DECIMAL(18, 3)
 , estoque_minimo DECIMAL(18, 3)
 , preco_custo DECIMAL(18, 2)
-, descricao_grupo TINYTEXT
-, subgrupo TINYTEXT
+, descricao_grupo TEXT
+, subgrupo TEXT
 , margem DECIMAL(18, 2)
-, unidade_de_venda TINYTEXT
-, tax_table_01_ff_ii_nn TINYTEXT
+, unidade_de_venda TEXT
+, tax_table_01_ff_ii_nn TEXT
 , codigo_fornecedor_principal INT
-, razao_fornecedor_principal TINYTEXT
-, nome_da_marca TINYTEXT
-, tipo_do_produto TINYTEXT
+, razao_fornecedor_principal TEXT
+, nome_da_marca TEXT
+, tipo_do_produto TEXT
 )
 ;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
     <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>160</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Recria a tabela vvr_produtos_err</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -889,53 +787,51 @@ CREATE TABLE vvr_produtos
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>DROP TABLE IF EXISTS vvr_produtos_err;
 
 
 CREATE TABLE vvr_produtos_err
 (
-  codigo_do_produto TINYTEXT
-, codigo_de_barras TINYTEXT
-, descricao TINYTEXT
-, referencia TINYTEXT
-, ncm TINYTEXT
-, cst TINYTEXT
-, cest TINYTEXT
-, preco_venda TINYTEXT
-, peso_bruto TINYTEXT
-, cfop TINYTEXT
-, estoque TINYTEXT
-, estoque_minimo TINYTEXT
-, preco_custo TINYTEXT
-, descricao_grupo TINYTEXT
-, subgrupo TINYTEXT
-, margem TINYTEXT
-, unidade_de_venda TINYTEXT
-, tax_table_01_ff_ii_nn TINYTEXT
-, codigo_fornecedor_principal TINYTEXT
-, razao_fornecedor_principal TINYTEXT
-, nome_da_marca TINYTEXT
-, tipo_do_produto TINYTEXT
+  codigo_do_produto TEXT
+, codigo_de_barras TEXT
+, descricao TEXT
+, referencia TEXT
+, ncm TEXT
+, cst TEXT
+, cest TEXT
+, preco_venda TEXT
+, peso_bruto TEXT
+, cfop TEXT
+, estoque TEXT
+, estoque_minimo TEXT
+, preco_custo TEXT
+, descricao_grupo TEXT
+, subgrupo TEXT
+, margem TEXT
+, unidade_de_venda TEXT
+, tax_table_01_ff_ii_nn TEXT
+, codigo_fornecedor_principal TEXT
+, razao_fornecedor_principal TEXT
+, nome_da_marca TEXT
+, tipo_do_produto TEXT
 )
 ;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
     <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>384</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -951,453 +847,341 @@ CREATE TABLE vvr_produtos_err
     </partitioning>
     <fields>
       <field>
+        <length>-2</length>
         <name>codigo_do_produto</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>codigo_de_barras</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>descricao</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>referencia</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>ncm</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>cst</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>cest</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>preco_venda</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>peso_bruto</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>cfop</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>estoque</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>estoque_minimo</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>preco_custo</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>descricao_grupo</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>subgrupo</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>margem</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>unidade_de_venda</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>tax_table_01_ff_ii_nn</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>codigo_fornecedor_principal</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>razao_fornecedor_principal</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>nome_da_marca</name>
+        <precision>-2</precision>
       </field>
       <field>
+        <length>-2</length>
         <name>tipo_do_produto</name>
+        <precision>-2</precision>
       </field>
-      <select_unspecified>N</select_unspecified>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>codigo_do_produto</name>
+        <precision>-2</precision>
         <rename>codigo_do_produto</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>Integer</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>codigo_de_barras</name>
+        <precision>-2</precision>
         <rename>codigo_de_barras</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>descricao</name>
+        <precision>-2</precision>
         <rename>descricao</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>referencia</name>
+        <precision>-2</precision>
         <rename>referencia</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>ncm</name>
+        <precision>-2</precision>
         <rename>ncm</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>cst</name>
+        <precision>-2</precision>
         <rename>cst</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>cest</name>
+        <precision>-2</precision>
         <rename>cest</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>preco_venda</name>
+        <precision>2</precision>
         <rename>preco_venda</rename>
-        <type>Number</type>
-        <length>18</length>
-        <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>Number</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>peso_bruto</name>
+        <precision>3</precision>
         <rename>peso_bruto</rename>
-        <type>Number</type>
-        <length>18</length>
-        <precision>3</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>Number</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>cfop</name>
+        <precision>-2</precision>
         <rename>cfop</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>estoque</name>
+        <precision>3</precision>
         <rename>estoque</rename>
-        <type>Number</type>
-        <length>18</length>
-        <precision>3</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>Number</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>estoque_minimo</name>
-        <rename>estoque_minimo</rename>
-        <type>Number</type>
-        <length>18</length>
         <precision>3</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
+        <rename>estoque_minimo</rename>
         <storage_type/>
+        <type>Number</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>preco_custo</name>
+        <precision>2</precision>
         <rename>preco_custo</rename>
-        <type>Number</type>
-        <length>18</length>
-        <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>Number</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>descricao_grupo</name>
+        <precision>-2</precision>
         <rename>descricao_grupo</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>subgrupo</name>
+        <precision>-2</precision>
         <rename>subgrupo</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
-        <name>margem</name>
-        <rename>margem</rename>
-        <type>Number</type>
+        <date_format_lenient>N</date_format_lenient>
         <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>margem</name>
         <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
+        <rename>margem</rename>
         <storage_type/>
+        <type>Number</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>unidade_de_venda</name>
+        <precision>-2</precision>
         <rename>unidade_de_venda</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>tax_table_01_ff_ii_nn</name>
+        <precision>-2</precision>
         <rename>tax_table_01_ff_ii_nn</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>codigo_fornecedor_principal</name>
+        <precision>-2</precision>
         <rename>codigo_fornecedor_principal</rename>
+        <storage_type/>
         <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>razao_fornecedor_principal</name>
+        <precision>-2</precision>
         <rename>razao_fornecedor_principal</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
         <name>nome_da_marca</name>
-        <rename>nome_da_marca</rename>
-        <type>String</type>
-        <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
+        <rename>nome_da_marca</rename>
         <storage_type/>
+        <type>String</type>
       </meta>
       <meta>
-        <name>tipo_do_produto</name>
-        <rename>tipo_do_produto</rename>
-        <type>String</type>
+        <date_format_lenient>N</date_format_lenient>
         <length>-2</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>tipo_do_produto</name>
         <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
+        <rename>tipo_do_produto</rename>
         <storage_type/>
+        <type>String</type>
       </meta>
+      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>1072</xloc>
+      <xloc>1136</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1411,29 +1195,24 @@ CREATE TABLE vvr_produtos_err
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
     <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
+    <directory>%%java.io.tmpdir%%</directory>
     <fields>
       <field>
-        <name>codigo_do_produto</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
         <collator_strength>0</collator_strength>
+        <name>codigo_do_produto</name>
         <presorted>N</presorted>
       </field>
     </fields>
+    <sort_size>1000000</sort_size>
+    <unique_rows>N</unique_rows>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>1216</xloc>
+      <xloc>1280</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1448,21 +1227,17 @@ CREATE TABLE vvr_produtos_err
       <schema_name/>
     </partitioning>
     <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>Y</reject_duplicate_row>
-    <error_description/>
     <fields>
       <field>
-        <name>codigo_do_produto</name>
         <case_insensitive>N</case_insensitive>
+        <name>codigo_do_produto</name>
       </field>
     </fields>
+    <reject_duplicate_row>Y</reject_duplicate_row>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>656</xloc>
+      <xloc>688</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1485,9 +1260,9 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
-        <digits>only</digits>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
       <field>
@@ -1498,8 +1273,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1511,8 +1286,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1524,8 +1299,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1537,8 +1312,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1550,8 +1325,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1563,8 +1338,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1576,8 +1351,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1589,8 +1364,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1602,8 +1377,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1615,8 +1390,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1628,8 +1403,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1641,8 +1416,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1654,8 +1429,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1667,8 +1442,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1680,8 +1455,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1693,8 +1468,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1706,8 +1481,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1719,8 +1494,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1732,8 +1507,8 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
@@ -1745,18 +1520,16 @@ CREATE TABLE vvr_produtos_err
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
     </fields>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>816</xloc>
+      <xloc>848</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1770,31 +1543,31 @@ CREATE TABLE vvr_produtos_err
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema/>
-    <table>vvr_produtos</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <specify_fields>N</specify_fields>
+    <table>vvr_produtos</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>1344</xloc>
+      <xloc>1408</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1808,64 +1581,31 @@ CREATE TABLE vvr_produtos_err
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema/>
-    <table>vvr_produtos_err</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <GUI>
-      <xloc>1072</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Inclui chaves primarias</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
     <connection>DB_DEV_CONVERSAO</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>ALTER TABLE vvr_produtos
-ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY FIRST;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <drop_columns>N</drop_columns>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <specify_fields>N</specify_fields>
+    <table>vvr_produtos_err</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>1536</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
+      <xloc>1136</xloc>
+      <yloc>272</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
