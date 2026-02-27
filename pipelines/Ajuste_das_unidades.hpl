@@ -20,23 +20,23 @@
   </info>
   <notepads>
     <notepad>
-      <backgroundcolorblue>143</backgroundcolorblue>
-      <backgroundcolorgreen>211</backgroundcolorgreen>
-      <backgroundcolorred>231</backgroundcolorred>
-      <bordercolorblue>100</bordercolorblue>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorred>100</bordercolorred>
+      <backgroundcolorblue>251</backgroundcolorblue>
+      <backgroundcolorgreen>232</backgroundcolorgreen>
+      <backgroundcolorred>201</backgroundcolorred>
+      <bordercolorblue>90</bordercolorblue>
+      <bordercolorgreen>58</bordercolorgreen>
+      <bordercolorred>14</bordercolorred>
       <fontbold>N</fontbold>
-      <fontcolorblue>0</fontcolorblue>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorred>0</fontcolorred>
+      <fontcolorblue>90</fontcolorblue>
+      <fontcolorgreen>58</fontcolorgreen>
+      <fontcolorred>14</fontcolorred>
       <fontitalic>N</fontitalic>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <height>-1</height>
       <xloc>32</xloc>
       <yloc>16</yloc>
-      <note>Essa transformação utiliza uma conexão ao banco usando o MySQL, pois não funciona com a conexão padrão do mariadb</note>
+      <note>As unidades que foram consideradas inválidas estão no log gerado em: \logs\log_conversao.txt</note>
       <width>656</width>
     </notepad>
   </notepads>
@@ -510,7 +510,7 @@ in
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\lixo\log_conversao</name>
+      <name>${PROJECT_HOME}/logs/log_erros_unidade</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>txt</extention>
