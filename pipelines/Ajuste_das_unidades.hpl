@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
     <name>Ajuste_das_unidades</name>
@@ -7,7 +8,6 @@
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
     <pipeline_status>0</pipeline_status>
-    <directory>/</directory>
     <parameters>
     </parameters>
     <capture_transform_performance>N</capture_transform_performance>
@@ -17,30 +17,27 @@
     <created_date>2024/12/19 15:04:09.380</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/12/19 15:04:09.380</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
-    <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>Essa transformação utiliza uma conexão ao banco usando o MySQL, pois não funciona com a conexão padrão do mariadb</note>
-      <xloc>32</xloc>
-      <yloc>16</yloc>
-      <width>656</width>
-      <heigth>26</heigth>
+      <backgroundcolorblue>143</backgroundcolorblue>
+      <backgroundcolorgreen>211</backgroundcolorgreen>
+      <backgroundcolorred>231</backgroundcolorred>
+      <bordercolorblue>100</bordercolorblue>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorred>100</bordercolorred>
+      <fontbold>N</fontbold>
+      <fontcolorblue>0</fontcolorblue>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorred>0</fontcolorred>
+      <fontitalic>N</fontitalic>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>231</backgroundcolorred>
-      <backgroundcolorgreen>211</backgroundcolorgreen>
-      <backgroundcolorblue>143</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
+      <height>-1</height>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
+      <note>Essa transformação utiliza uma conexão ao banco usando o MySQL, pois não funciona com a conexão padrão do mariadb</note>
+      <width>656</width>
     </notepad>
   </notepads>
   <order>
@@ -77,7 +74,7 @@
   </order>
   <transform>
     <name>Corrige as Unidades</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>N</distribute>
     <custom_distribution/>
@@ -86,11 +83,14 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>N</single_statement>
     <sql>/*_conversão ajuste das unidades*/
 
 update vvr_produtos
@@ -439,19 +439,10 @@ in
 );
 
 </sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>192</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -465,31 +456,31 @@ in
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Verifica Unidades</send_true_to>
-    <send_false_to>Modified JavaScript value</send_false_to>
     <compare>
       <condition>
-        <negated>N</negated>
-        <leftvalue>quant_de_unidades_fora_do_padrao</leftvalue>
+        <conditions>
+</conditions>
         <function>&lt;></function>
-        <rightvalue/>
+        <leftvalue>quant_de_unidades_fora_do_padrao</leftvalue>
+        <negated>N</negated>
+        <operator>-</operator>
         <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
-          <length>-1</length>
-          <precision>0</precision>
           <isnull>N</isnull>
+          <length>-1</length>
           <mask>####0;-####0</mask>
+          <name>constant</name>
+          <precision>0</precision>
+          <text>0</text>
+          <type>Integer</type>
         </value>
       </condition>
     </compare>
+    <send_false_to>Modified JavaScript value</send_false_to>
+    <send_true_to>Verifica Unidades</send_true_to>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>496</xloc>
+      <xloc>544</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -503,6 +494,8 @@ in
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <schema_definition/>
+    <ignore_fields>N</ignore_fields>
     <separator>;</separator>
     <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
@@ -511,7 +504,7 @@ in
     <footer>N</footer>
     <format>DOS</format>
     <compression>None</compression>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField/>
@@ -520,7 +513,7 @@ in
       <name>C:\lixo\log_conversao</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extension>txt</extension>
+      <extention>txt</extention>
       <append>N</append>
       <split>N</split>
       <haspartno>N</haspartno>
@@ -543,16 +536,15 @@ in
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
+        <roundingType>half_even</roundingType>
         <length>63</length>
         <precision>-1</precision>
       </field>
     </fields>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>928</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -566,7 +558,6 @@ in
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>
       <jsScript>
@@ -580,11 +571,9 @@ Alert(mensagem)</jsScript_script>
     </jsScripts>
     <fields>    </fields>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>496</xloc>
+      <xloc>544</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -598,7 +587,6 @@ Alert(mensagem)</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>
       <jsScript>
@@ -612,11 +600,9 @@ Alert(mensagem)</jsScript_script>
     </jsScripts>
     <fields>    </fields>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1088</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -631,49 +617,19 @@ Alert(mensagem)</jsScript_script>
       <schema_name/>
     </partitioning>
     <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
     <sql>SELECT DISTINCT
 COUNT(vvr_produtos.unidade_de_venda) as quant_de_unidades_fora_do_padrao
 FROM vvr_produtos
 WHERE
 NOT EXISTS ( SELECT 1 FROM app_business_unit u WHERE u.unity = vvr_produtos.unidade_de_venda)
 ORDER BY 1;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
     <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>quant_de_unidades_fora_do_padrao</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Qtd Unid invalidas</origin>
-        <comments>quant_de_unidades_fora_do_padrao</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>368</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -688,72 +644,19 @@ ORDER BY 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
     <sql>SELECT DISTINCT
 vvr_produtos.unidade_de_venda as unidades_fora_do_padrao
 FROM vvr_produtos
 WHERE
 NOT EXISTS ( SELECT 1 FROM app_business_unit u WHERE u.unity = vvr_produtos.unidade_de_venda)
 ORDER BY 1;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
     <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>quant_de_unidades_fora_do_padrao</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Qtd Unid invalidas</origin>
-        <comments>quant_de_unidades_fora_do_padrao</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>unidades_fora_do_padrao</name>
-        <length>63</length>
-        <precision>-1</precision>
-        <origin>Verifica Unidades</origin>
-        <comments>unidades_fora_do_padrao</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>736</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform_error_handling>
