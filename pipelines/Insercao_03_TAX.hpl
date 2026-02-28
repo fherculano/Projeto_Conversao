@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
     <name>Insercao_03_TAX</name>
@@ -7,7 +8,6 @@
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
     <pipeline_status>0</pipeline_status>
-    <directory>/</directory>
     <parameters>
       <parameter>
         <name>par_cod_usuario_suporte</name>
@@ -27,52 +27,44 @@
     <created_date>2024/12/26 16:23:18.415</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/12/26 16:23:18.415</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
-    <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
+      <backgroundcolorblue>143</backgroundcolorblue>
+      <backgroundcolorgreen>211</backgroundcolorgreen>
+      <backgroundcolorred>231</backgroundcolorred>
+      <bordercolorblue>100</bordercolorblue>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorred>100</bordercolorred>
+      <fontbold>Y</fontbold>
+      <fontcolorblue>0</fontcolorblue>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorred>0</fontcolorred>
+      <fontitalic>N</fontitalic>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <height>-1</height>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
       <note>Ao rodar essa transformação preencha os seguintes parametros
 ao iniciar:
 
 Código do usuário do suporte
 Código da empresa que criou os dados (Matriz)
 </note>
-      <xloc>0</xloc>
-      <yloc>0</yloc>
       <width>362</width>
-      <heigth>104</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>Y</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>231</backgroundcolorred>
-      <backgroundcolorgreen>211</backgroundcolorgreen>
-      <backgroundcolorblue>143</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
   <order>
     <hop>
       <from>Esvazia a tabela app_product_tax</from>
-      <to>Inicializa o autoincremento</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Inicializa o autoincremento</from>
       <to>Inclui os dados em app_product_tax</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <transform>
     <name>Esvazia a tabela app_product_tax</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>N</distribute>
     <custom_distribution/>
@@ -81,32 +73,26 @@ Código da empresa que criou os dados (Matriz)
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE app_product_tax;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>176</xloc>
       <yloc>176</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Inclui os dados em app_product_tax</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -115,11 +101,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>Y</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>N</single_statement>
     <sql>SET @empresa = ${par_empresa_que_criou};
 SET @usuario = ${par_cod_usuario_suporte};;
 
@@ -157,51 +146,10 @@ FROM
 	app_products
 WHERE
   NOT EXISTS ( SELECT 1 FROM app_product_tax u WHERE u.id_product = app_products.id and u.id_company = @empresa )	</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>560</xloc>
       <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Inicializa o autoincremento</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>alter table app_product_tax auto_increment = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform_error_handling>
