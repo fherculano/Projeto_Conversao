@@ -1,13 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
-    <name>insercao_17_app_participants_relationship</name>
+    <name>insercao_17_relationship</name>
     <name_sync_with_filename>Y</name_sync_with_filename>
     <description/>
     <extended_description/>
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
     <pipeline_status>0</pipeline_status>
-    <directory>/</directory>
     <parameters>
       <parameter>
         <name>par_cod_usuario_suporte</name>
@@ -27,35 +27,32 @@
     <created_date>2024/12/26 16:23:18.415</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/12/26 16:23:18.415</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
-    <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorred>255</backgroundcolorred>
+      <bordercolorblue>100</bordercolorblue>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorred>100</bordercolorred>
+      <fontbold>Y</fontbold>
+      <fontcolorblue>0</fontcolorblue>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorred>0</fontcolorred>
+      <fontitalic>N</fontitalic>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <height>-1</height>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
       <note>Ao rodar essa transformação preencha os seguintes parametros
 ao iniciar:
 
 Código do usuário do suporte
 Código da empresa que criou os dados (Matriz)
 </note>
-      <xloc>0</xloc>
-      <yloc>0</yloc>
       <width>362</width>
-      <heigth>104</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>Y</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
   <order>
@@ -71,8 +68,8 @@ Código da empresa que criou os dados (Matriz)
     </hop>
   </order>
   <transform>
-    <name>Inclui os dados em app_participants_relationship</name>
-    <type>ExecSQL</type>
+    <name>Block this step until steps finish</name>
+    <type>BlockUntilTransformsFinish</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -81,11 +78,37 @@ Código da empresa que criou os dados (Matriz)
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <transforms>
+      <transform>
+        <CopyNr>0</CopyNr>
+        <name>Inclui os dados em app_participants_relationship</name>
+      </transform>
+    </transforms>
+    <attributes/>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>176</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Inclui os dados em app_participants_relationship</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>Y</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>INSERT INTO app_participants_relationships (id_company, id_participant_category, id_participant, user_id, status) 
 SELECT
   ${par_empresa_que_criou} as id_company,
@@ -102,24 +125,15 @@ FROM app_participants
 WHERE
 NOT EXISTS ( SELECT 1 FROM app_participants_relationships u WHERE u.id_participant = app_participants.id);
 </sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>208</xloc>
       <yloc>176</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>atualiza o id_participant_local em app_participants_relationship</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -128,55 +142,24 @@ NOT EXISTS ( SELECT 1 FROM app_participants_relationships u WHERE u.id_participa
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>Y</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>
 UPDATE app_participants_relationships 
 SET app_participants_relationships.id_participant_local = app_participants_relationships.id_participant
 WHERE
 app_participants_relationships.id_participant IN 
 (SELECT app_participants.id FROM app_participants WHERE app_participants.conversion_flag = 1);</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>720</xloc>
+      <xloc>848</xloc>
       <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <name>Inclui os dados em app_participants_relationship</name>
-        <CopyNr>0</CopyNr>
-      </transform>
-    </transforms>
-    <attributes/>
-    <cluster_schema/>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform_error_handling>
