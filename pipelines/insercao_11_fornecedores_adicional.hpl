@@ -11,12 +11,12 @@
     <parameters>
       <parameter>
         <name>par_cod_primeiro_participante</name>
-        <default_value>6</default_value>
+        <default_value>2</default_value>
         <description>Código do primeiro participante após os cadastrados manualmente</description>
       </parameter>
       <parameter>
         <name>par_cod_usuario_suporte</name>
-        <default_value>2</default_value>
+        <default_value>1</default_value>
         <description>Código do usuário do Suporte</description>
       </parameter>
       <parameter>
@@ -62,28 +62,18 @@ Código do primeiro participante</note>
   </notepads>
   <order>
     <hop>
-      <from>Esvazia a tabela app_participants_additional</from>
-      <to>Block this step until steps finish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish</from>
-      <to>Inicializa o autoincremento</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Block this step until steps finish 2</from>
-      <to>Inclui os dados em app_participants</to>
+      <to>Inclui os dados em app_participants_additional</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Inicializa o autoincremento</from>
+      <from>Esvazia a tabela app_participants_additional</from>
       <to>Block this step until steps finish 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <transform>
-    <name>Block this step until steps finish</name>
+    <name>Block this step until steps finish 2</name>
     <type>BlockUntilTransformsFinish</type>
     <description/>
     <distribute>Y</distribute>
@@ -102,29 +92,6 @@ Código do primeiro participante</note>
     <attributes/>
     <GUI>
       <xloc>464</xloc>
-      <yloc>224</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 2</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>Inicializa o autoincremento</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>960</xloc>
       <yloc>224</yloc>
     </GUI>
   </transform>
@@ -153,6 +120,8 @@ Código do primeiro participante</note>
     <sql>COMMIT;
 SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM app_participants_additional WHERE id >= ${par_cod_primeiro_participante};
+COMMIT;
+alter table app_participants_additional auto_increment = ${par_cod_primeiro_participante};
 SET FOREIGN_KEY_CHECKS = 1;
 
 </sql>
@@ -164,7 +133,7 @@ SET FOREIGN_KEY_CHECKS = 1;
     </GUI>
   </transform>
   <transform>
-    <name>Inclui os dados em app_participants</name>
+    <name>Inclui os dados em app_participants_additional</name>
     <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
@@ -177,8 +146,11 @@ SET FOREIGN_KEY_CHECKS = 1;
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>Y</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -205,40 +177,10 @@ WHERE
         FROM app_participants_additional AS pa
         WHERE pa.id_participant = p.id
     );</sql>
-    <attributes/>
-    <GUI>
-      <xloc>1216</xloc>
-      <yloc>224</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Inicializa o autoincremento</name>
-    <type>ExecSql</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <arguments>
-</arguments>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
-    <execute_each_row>N</execute_each_row>
-    <insert_field/>
-    <quoteString>N</quoteString>
-    <read_field/>
-    <replace_variables>Y</replace_variables>
-    <set_params>N</set_params>
-    <single_statement>Y</single_statement>
-    <sql>COMMIT;
-alter table app_participants_additional auto_increment = ${par_cod_primeiro_participante};</sql>
     <update_field/>
     <attributes/>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>720</xloc>
       <yloc>224</yloc>
     </GUI>
   </transform>

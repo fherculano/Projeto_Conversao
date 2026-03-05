@@ -11,7 +11,7 @@
     <parameters>
       <parameter>
         <name>par_cod_primeiro_participante</name>
-        <default_value>6</default_value>
+        <default_value>2</default_value>
         <description>Código do primeiro participante após os cadastrados manualmente</description>
       </parameter>
     </parameters>
@@ -86,6 +86,7 @@ DELETE FROM app_participants_additional WHERE id_participant >= ${par_cod_primei
 -- Agora, apaga os dados da tabela pai
 DELETE FROM app_participants WHERE id >= ${par_cod_primeiro_participante};
 
+COMMIT;
 -- Seta o autoincremento (ALTER TABLE só funciona com TRUNCATE, mas podemos setá-lo assim)
 ALTER TABLE app_participants AUTO_INCREMENT = ${par_cod_primeiro_participante};
 
@@ -93,8 +94,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 COMMIT;
 
-alter table app_participants auto_increment = ${par_cod_primeiro_participante};
-COMMIT;
 
 
 </sql>
