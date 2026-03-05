@@ -565,7 +565,7 @@ in
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>//Script here
 
-mensagem = 'Não existem Unidades não Válidas, nada a ajustar';
+mensagem = 'Não existem Unidades Inválidas, nada a ajustar';
 Alert(mensagem)</jsScript_script>
       </jsScript>
     </jsScripts>

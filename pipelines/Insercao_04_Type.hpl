@@ -11,7 +11,7 @@
     <parameters>
       <parameter>
         <name>par_cod_usuario_suporte</name>
-        <default_value>2</default_value>
+        <default_value>1</default_value>
         <description>Código do usuário do Suporte</description>
       </parameter>
       <parameter>

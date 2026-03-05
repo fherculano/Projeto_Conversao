@@ -11,7 +11,7 @@
     <parameters>
       <parameter>
         <name>par_cod_usuario_suporte</name>
-        <default_value>2</default_value>
+        <default_value>1</default_value>
         <description>Código do usuário do Suporte</description>
       </parameter>
       <parameter>
@@ -80,11 +80,8 @@ Código da empresa que criou os dados (Matriz)</note>
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <insert_field/>
     <quoteString>N</quoteString>
-    <read_field/>
     <replace_variables>Y</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -92,7 +89,6 @@ Código da empresa que criou os dados (Matriz)</note>
 TRUNCATE TABLE app_products_business_unit;
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;</sql>
-    <update_field/>
     <attributes/>
     <GUI>
       <xloc>160</xloc>
@@ -113,11 +109,8 @@ COMMIT;</sql>
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <insert_field/>
     <quoteString>N</quoteString>
-    <read_field/>
     <replace_variables>Y</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -150,7 +143,6 @@ FROM
 WHERE
   NOT EXISTS ( SELECT 1 FROM app_products_business_unit u WHERE u.id_product = app_products.id and u.id_company = @empresa );	
 COMMIT;</sql>
-    <update_field/>
     <attributes/>
     <GUI>
       <xloc>704</xloc>
