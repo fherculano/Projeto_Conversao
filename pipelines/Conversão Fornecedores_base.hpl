@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
-    <name>Conversão Armazem Brasil Fornecedores_base</name>
+    <name>Conversão Fornecedores_base</name>
     <name_sync_with_filename>Y</name_sync_with_filename>
     <description/>
     <extended_description/>
@@ -623,11 +623,8 @@ numero_endereco = 'SN';
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <insert_field/>
     <quoteString>N</quoteString>
-    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -653,7 +650,6 @@ id INT AUTO_INCREMENT PRIMARY KEY
 , email TEXT
 )
 ;</sql>
-    <update_field/>
     <attributes/>
     <GUI>
       <xloc>144</xloc>
@@ -674,11 +670,8 @@ id INT AUTO_INCREMENT PRIMARY KEY
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <insert_field/>
     <quoteString>N</quoteString>
-    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -703,7 +696,6 @@ CREATE TABLE vvr_fornecedores_err
 , email TEXT
 )
 ;</sql>
-    <update_field/>
     <attributes/>
     <GUI>
       <xloc>384</xloc>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
     <name>povoa as tabelas iniciais</name>
@@ -6,7 +7,6 @@
     <extended_description/>
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
-    <directory>/</directory>
     <parameters>
     </parameters>
     <capture_transform_performance>N</capture_transform_performance>
@@ -16,8 +16,6 @@
     <created_date>2025/06/16 13:24:29.543</created_date>
     <modified_user>-</modified_user>
     <modified_date>2025/06/16 13:24:29.543</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
-    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
@@ -207,6 +205,26 @@
       <to>Esvazia app_acquirers</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Esvazia app_product_type_list</from>
+      <to>app_product_type_list input</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>app_product_type_list input</from>
+      <to>app_product_type_list output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>app_cfops_moves_box output</from>
+      <to>Block this step until steps finish 9 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block this step until steps finish 9 2</from>
+      <to>Esvazia app_product_type_list</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <transform>
     <name>Block this step until steps finish</name>
@@ -221,16 +239,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_acquirers_output</name>
         <CopyNr>0</CopyNr>
+        <name>app_acquirers_output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>416</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -246,16 +262,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_bank_output</name>
         <CopyNr>0</CopyNr>
+        <name>app_bank_output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>416</xloc>
       <yloc>288</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -271,16 +285,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_IBGE_city output</name>
         <CopyNr>0</CopyNr>
+        <name>app_IBGE_city output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>448</xloc>
       <yloc>448</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -296,16 +308,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_moviment_category output</name>
         <CopyNr>0</CopyNr>
+        <name>app_moviment_category output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>752</xloc>
       <yloc>400</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -321,16 +331,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_anp_output</name>
         <CopyNr>0</CopyNr>
+        <name>app_anp_output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1104</xloc>
       <yloc>112</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -346,16 +354,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_business_unit_output</name>
         <CopyNr>0</CopyNr>
+        <name>app_business_unit_output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1104</xloc>
       <yloc>272</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -371,16 +377,14 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_participants_categories output</name>
         <CopyNr>0</CopyNr>
+        <name>app_participants_categories output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1504</xloc>
       <yloc>336</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -396,21 +400,19 @@
     </partitioning>
     <transforms>
       <transform>
-        <name>app_cfops_output</name>
         <CopyNr>0</CopyNr>
+        <name>app_cfops_output</name>
       </transform>
     </transforms>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1920</xloc>
       <yloc>112</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia anp</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -419,11 +421,14 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -432,24 +437,15 @@ TRUNCATE TABLE app_anp;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>944</xloc>
       <yloc>32</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_IBGE_city</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -458,11 +454,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -471,24 +470,15 @@ TRUNCATE TABLE app_IBGE_city;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>272</xloc>
       <yloc>368</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_IBGE_district</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -497,11 +487,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -510,24 +503,15 @@ TRUNCATE TABLE app_IBGE_district;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>944</xloc>
       <yloc>352</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_acquirers</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -536,11 +520,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -549,24 +536,15 @@ TRUNCATE TABLE app_acquirers;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>272</xloc>
       <yloc>48</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_bank</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -575,11 +553,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -588,24 +569,15 @@ TRUNCATE TABLE app_bank;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>272</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_business_unit</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -614,11 +586,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -627,24 +602,15 @@ TRUNCATE TABLE app_business_unit;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>944</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_cfops</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -653,11 +619,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -666,24 +635,15 @@ TRUNCATE TABLE app_cfops;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1760</xloc>
       <yloc>32</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_cfops_moves_box</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -692,11 +652,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -705,24 +668,15 @@ TRUNCATE TABLE app_cfops_moves_box;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>1760</xloc>
+      <xloc>1744</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_moviment_category</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -731,11 +685,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -744,24 +701,15 @@ TRUNCATE TABLE app_moviment_category;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>256</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
     <name>Esvazia app_participants_categories</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -770,11 +718,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Desabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -783,19 +734,10 @@ TRUNCATE TABLE app_participants_categories;
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>960</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -810,18 +752,16 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <fields>
-    </fields>
+</fields>
+    <interval_in_ms>5000</interval_in_ms>
+    <last_time_field>FiveSecondsAgo</last_time_field>
     <limit>10</limit>
     <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
     <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>80</xloc>
       <yloc>48</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -836,228 +776,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_IBGE_city;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_IBGE_city;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>UF</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>UF</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_UF</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Nome_UF</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Mesoregiao_Geografica</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Mesoregiao_Geografica</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Mesoregiao</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Nome_Mesoregiao</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Microregiao_Geografica</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Microregiao_Geografica</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Microregiao</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Nome_Microregiao</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Municipio</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Municipio</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>Codigo_Municipio_Completo</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Codigo_Municipio_Completo</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Municipio</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input</origin>
-        <comments>Nome_Municipio</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>448</xloc>
       <yloc>368</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1071,31 +797,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_IBGE_city</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_IBGE_city</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>608</xloc>
       <yloc>368</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1110,297 +837,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_IBGE_district;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_IBGE_district;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>UF</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>UF</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_UF</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Nome_UF</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Mesoregiao_geografica</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Mesoregiao_geografica</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Mesoregiaoo</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Nome_Mesoregiaoo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Microregiao_Geografica</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Microregiao_Geografica</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Microregiao</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Nome_Microregiao</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Municipio</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Municipio</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Codigo_Municipio_Completo</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Codigo_Municipio_Completo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Municipio</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Nome_Municipio</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Distrito</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Distrito</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Codigo_de_Distrito_Completo</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Codigo_de_Distrito_Completo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>Nome_Distrito</name>
-        <length>16383</length>
-        <precision>-1</precision>
-        <origin>app_cfops_moves_box input 2</origin>
-        <comments>Nome_Distrito</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1120</xloc>
       <yloc>352</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1414,31 +858,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_IBGE_district</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_IBGE_district</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1280</xloc>
       <yloc>352</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1453,159 +898,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_acquirers;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_acquirers;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_acquirers_input</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>acquirers</name>
-        <length>250</length>
-        <precision>-1</precision>
-        <origin>app_acquirers_input</origin>
-        <comments>acquirers</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>document</name>
-        <length>45</length>
-        <precision>-1</precision>
-        <origin>app_acquirers_input</origin>
-        <comments>document</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>situation</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_acquirers_input</origin>
-        <comments>situation</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>card_default</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_acquirers_input</origin>
-        <comments>card_default</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>pix_default</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_acquirers_input</origin>
-        <comments>pix_default</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>416</xloc>
       <yloc>48</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1619,31 +919,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_acquirers</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_acquirers</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>544</xloc>
       <yloc>48</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1658,113 +959,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_bank;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_bank;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_anp 2</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>bank</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp 2</origin>
-        <comments>bank</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>code_number</name>
-        <length>45</length>
-        <precision>-1</precision>
-        <origin>app_anp 2</origin>
-        <comments>code_number</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>path_logo</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp 2</origin>
-        <comments>path_logo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>416</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -1779,274 +981,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_anp</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_anp</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_anp</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>family</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>family</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>group_product</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>group_product</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>subgroup</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>subgroup</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>sub_subgroup</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>sub_subgroup</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>product</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>product</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>code</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>code</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>unity_of_greatness</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>unity_of_greatness</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>measured_unit</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>measured_unit</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>dt_start</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>dt_start</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>dt_end</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>app_anp</origin>
-        <comments>dt_end</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1088</xloc>
       <yloc>32</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2060,31 +1002,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_anp</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_anp</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1248</xloc>
       <yloc>32</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2098,31 +1041,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_bank</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_bank</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>544</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2137,113 +1081,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_business_unit;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_business_unit;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_anp 3</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>unity</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp 3</origin>
-        <comments>unity</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>description</name>
-        <length>150</length>
-        <precision>-1</precision>
-        <origin>app_anp 3</origin>
-        <comments>description</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>abbreviation</name>
-        <length>2</length>
-        <precision>-1</precision>
-        <origin>app_anp 3</origin>
-        <comments>abbreviation</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1104</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2257,31 +1102,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_business_unit</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_business_unit</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1248</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2296,458 +1142,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_cfops;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_cfops;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cfop</name>
-        <length>153</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>cfop</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>tipo</name>
-        <length>134</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>tipo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>categoria</name>
-        <length>149</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>categoria</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>description</name>
-        <length>185</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>description</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>aplication</name>
-        <length>286</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>aplication</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>init</name>
-        <length>260</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>init</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>end</name>
-        <length>262</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>end</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indnfe</name>
-        <length>294</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indnfe</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indcomunica</name>
-        <length>294</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indcomunica</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indtransp</name>
-        <length>240</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indtransp</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>inddevol</name>
-        <length>218</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>inddevol</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indretor</name>
-        <length>154</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indretor</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indanula</name>
-        <length>212</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indanula</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indremes</name>
-        <length>212</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indremes</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>indcomb</name>
-        <length>30</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>indcomb</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>para_nfce</name>
-        <length>122</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>para_nfce</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>para_cte</name>
-        <length>115</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>para_cte</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>para_cte_os</name>
-        <length>31</length>
-        <precision>-1</precision>
-        <origin>app_business_unit input 2</origin>
-        <comments>para_cte_os</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1920</xloc>
       <yloc>32</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2762,90 +1164,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_cfops_moves_box;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_cfops_moves_box;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_cfops input 2</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_cfop</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_cfops input 2</origin>
-        <comments>id_cfop</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>situation</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_cfops input 2</origin>
-        <comments>situation</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>1936</xloc>
+      <xloc>1968</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2859,31 +1185,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_cfops_moves_box</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_cfops_moves_box</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
-      <xloc>2096</xloc>
+      <xloc>2128</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2897,31 +1224,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_cfops</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_cfops</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>2096</xloc>
       <yloc>32</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -2936,136 +1264,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_moviment_category;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_moviment_category;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_IBGE_city input 2</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>catergory</name>
-        <length>100</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input 2</origin>
-        <comments>catergory</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>situation</name>
-        <length>1</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input 2</origin>
-        <comments>situation</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>create_at</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input 2</origin>
-        <comments>create_at</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>update_at</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>app_IBGE_city input 2</origin>
-        <comments>update_at</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>432</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -3079,31 +1285,32 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_moviment_category</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_moviment_category</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>624</xloc>
       <yloc>528</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -3118,136 +1325,14 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <schema_name/>
     </partitioning>
     <connection>DB_PROD_CONVERSAO</connection>
-    <sql>SELECT * FROM app_participants_categories;</sql>
-    <limit>0</limit>
-    <lookup/>
     <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_participants_categories;</sql>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_moviment_category input 2</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>category</name>
-        <length>100</length>
-        <precision>-1</precision>
-        <origin>app_moviment_category input 2</origin>
-        <comments>category</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>create_at</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>app_moviment_category input 2</origin>
-        <comments>create_at</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>update_at</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>app_moviment_category input 2</origin>
-        <comments>update_at</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>status</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>app_moviment_category input 2</origin>
-        <comments>status</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1168</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform>
@@ -3261,31 +1346,156 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <schema>base_conversoes</schema>
-    <table>app_participants_categories</table>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
     <fields>
-    </fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_participants_categories</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>1360</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Esvazia app_product_type_list</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE app_product_type_list;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>1744</xloc>
+      <yloc>400</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>app_product_type_list input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_PROD_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_product_type_list;</sql>
+    <variables_active>N</variables_active>
+    <attributes/>
+    <GUI>
+      <xloc>1968</xloc>
+      <yloc>400</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>app_product_type_list output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
+    <commit>1000</commit>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_product_type_list</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>2176</xloc>
+      <yloc>400</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Block this step until steps finish 9 2</name>
+    <type>BlockUntilTransformsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <transforms>
+      <transform>
+        <CopyNr>0</CopyNr>
+        <name>app_cfops_output</name>
+      </transform>
+    </transforms>
+    <attributes/>
+    <GUI>
+      <xloc>1936</xloc>
+      <yloc>304</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
