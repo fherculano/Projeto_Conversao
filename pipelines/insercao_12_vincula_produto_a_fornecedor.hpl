@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
     <name>insercao_12_vincula_produto_a_fornecedor</name>
@@ -7,7 +8,6 @@
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
     <pipeline_status>0</pipeline_status>
-    <directory>/</directory>
     <parameters>
     </parameters>
     <capture_transform_performance>N</capture_transform_performance>
@@ -17,8 +17,6 @@
     <created_date>2024/12/26 16:23:18.415</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/12/26 16:23:18.415</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
-    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
@@ -26,7 +24,7 @@
   </order>
   <transform>
     <name>vincula os produtos ao fornecedor principal</name>
-    <type>ExecSQL</type>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -35,11 +33,17 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <arguments>
+</arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <single_statement>Y</single_statement>
-    <replace_variables>Y</replace_variables>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
     <sql>-- Passo 1: Criar a tabela temporária (simulando o CTE)
 CREATE TEMPORARY TABLE temp_cte AS
 WITH cte_base AS (
@@ -77,6 +81,7 @@ WITH cte_base AS (
     GROUP BY
         novo_id_produto
 )
+
 SELECT
 	id_fornecedor,
     novo_id_produto
@@ -90,19 +95,11 @@ SET app_product_additional.id_provider_default = temp_cte.id_fornecedor;
 
 -- Passo 3: Limpar a tabela temporária
 DROP TEMPORARY TABLE IF EXISTS temp_cte;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
     <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
     <attributes/>
-    <cluster_schema/>
     <GUI>
       <xloc>192</xloc>
       <yloc>112</yloc>
-      <draw>Y</draw>
     </GUI>
   </transform>
   <transform_error_handling>
