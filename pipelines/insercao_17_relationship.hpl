@@ -11,7 +11,7 @@
     <parameters>
       <parameter>
         <name>par_cod_usuario_suporte</name>
-        <default_value>2</default_value>
+        <default_value>1</default_value>
         <description>Código do usuário do Suporte</description>
       </parameter>
       <parameter>
@@ -86,7 +86,7 @@ Código da empresa que criou os dados (Matriz)
     </transforms>
     <attributes/>
     <GUI>
-      <xloc>496</xloc>
+      <xloc>528</xloc>
       <yloc>176</yloc>
     </GUI>
   </transform>
@@ -104,8 +104,11 @@ Código da empresa que criou os dados (Matriz)
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>Y</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -125,9 +128,10 @@ FROM app_participants
 WHERE
 NOT EXISTS ( SELECT 1 FROM app_participants_relationships u WHERE u.id_participant = app_participants.id);
 </sql>
+    <update_field/>
     <attributes/>
     <GUI>
-      <xloc>208</xloc>
+      <xloc>240</xloc>
       <yloc>176</yloc>
     </GUI>
   </transform>
@@ -145,8 +149,11 @@ NOT EXISTS ( SELECT 1 FROM app_participants_relationships u WHERE u.id_participa
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>Y</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -156,9 +163,10 @@ SET app_participants_relationships.id_participant_local = app_participants_relat
 WHERE
 app_participants_relationships.id_participant IN 
 (SELECT app_participants.id FROM app_participants WHERE app_participants.conversion_flag = 1);</sql>
+    <update_field/>
     <attributes/>
     <GUI>
-      <xloc>848</xloc>
+      <xloc>880</xloc>
       <yloc>176</yloc>
     </GUI>
   </transform>
