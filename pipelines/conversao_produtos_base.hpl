@@ -474,24 +474,16 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_field/>
     <accept_filenames>N</accept_filenames>
-    <accept_transform_name/>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <bad_line_files_destination_directory/>
     <bad_line_files_extension>warning</bad_line_files_extension>
     <encoding>UTF-8</encoding>
     <error_ignored>Y</error_ignored>
-    <error_line_files_destination_directory/>
     <error_line_files_extension>error</error_line_files_extension>
     <error_line_skipped>N</error_line_skipped>
-    <extensionFieldName/>
     <fields>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>codigo_do_produto</name>
         <precision>-1</precision>
@@ -500,10 +492,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>codigo_de_barras</name>
         <precision>-1</precision>
@@ -512,10 +501,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>descricao</name>
         <precision>-1</precision>
@@ -524,10 +510,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>referencia</name>
         <precision>-1</precision>
@@ -536,10 +519,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>ncm</name>
         <precision>-1</precision>
@@ -548,10 +528,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>cest</name>
         <precision>-1</precision>
@@ -560,10 +537,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>preco_venda</name>
         <precision>-1</precision>
@@ -572,10 +546,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>peso_bruto</name>
         <precision>-1</precision>
@@ -584,10 +555,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>estoque</name>
         <precision>-1</precision>
@@ -596,10 +564,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>estoque_minimo</name>
         <precision>-1</precision>
@@ -608,10 +573,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>preco_custo</name>
         <precision>-1</precision>
@@ -620,10 +582,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>descricao_grupo</name>
         <precision>-1</precision>
@@ -632,10 +591,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>subgrupo</name>
         <precision>-1</precision>
@@ -644,10 +600,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>margem</name>
         <precision>-1</precision>
@@ -656,10 +609,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>unidade_de_venda</name>
         <precision>-1</precision>
@@ -668,10 +618,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>tax_table_01_ff_ii_nn</name>
         <precision>-1</precision>
@@ -680,10 +627,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>codigo_fornecedor_principal</name>
         <precision>-1</precision>
@@ -692,10 +636,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>razao_fornecedor_principal</name>
         <precision>-1</precision>
@@ -704,10 +645,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>nome_da_marca</name>
         <precision>-1</precision>
@@ -716,10 +654,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>tipo_do_produto</name>
         <precision>-1</precision>
@@ -729,35 +664,20 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       </field>
     </fields>
     <file>
-      <exclude_filemask/>
       <file_required>N</file_required>
-      <filemask/>
       <include_subfolders>N</include_subfolders>
       <name>C:\ETL\Projeto_Conversao\dados_origem\produtos.xlsx</name>
     </file>
-    <filefield/>
     <header>Y</header>
-    <hiddenFieldName/>
     <ignore_fields>N</ignore_fields>
-    <lastModificationTimeFieldName/>
     <limit>0</limit>
-    <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
     <noempty>Y</noempty>
-    <pathFieldName/>
-    <rootUriNameFieldName/>
-    <rownumfield/>
-    <schema_definition/>
-    <sheetfield/>
-    <sheetrownumfield/>
     <sheets>
 </sheets>
-    <shortFileFieldName/>
-    <sizeFieldName/>
     <spreadsheet_type>POI</spreadsheet_type>
     <stoponempty>N</stoponempty>
     <strict_types>N</strict_types>
-    <uriNameFieldName/>
     <attributes/>
     <GUI>
       <xloc>528</xloc>
@@ -778,11 +698,8 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <insert_field/>
     <quoteString>N</quoteString>
-    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -817,7 +734,6 @@ CREATE TABLE vvr_produtos
 ;
 
 COMMIT;</sql>
-    <update_field/>
     <attributes/>
     <GUI>
       <xloc>96</xloc>
@@ -838,11 +754,8 @@ COMMIT;</sql>
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
     <execute_each_row>N</execute_each_row>
-    <insert_field/>
     <quoteString>N</quoteString>
-    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
@@ -873,7 +786,6 @@ CREATE TABLE vvr_produtos_err
 , tipo_do_produto TINYTEXT
 )
 ;</sql>
-    <update_field/>
     <attributes/>
     <GUI>
       <xloc>352</xloc>
@@ -896,131 +808,104 @@ CREATE TABLE vvr_produtos_err
         <length>-2</length>
         <name>codigo_do_produto</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>codigo_de_barras</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>descricao</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>referencia</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>ncm</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>cest</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>preco_venda</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>peso_bruto</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>estoque</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>estoque_minimo</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>preco_custo</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>descricao_grupo</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>subgrupo</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>margem</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>unidade_de_venda</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>tax_table_01_ff_ii_nn</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>codigo_fornecedor_principal</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>razao_fornecedor_principal</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>nome_da_marca</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <field>
         <length>-2</length>
         <name>tipo_do_produto</name>
         <precision>-2</precision>
-        <rename/>
       </field>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>codigo_do_produto</name>
@@ -1031,14 +916,7 @@ CREATE TABLE vvr_produtos_err
         <type>Integer</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>codigo_de_barras</name>
@@ -1049,14 +927,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>descricao</name>
@@ -1067,14 +938,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>referencia</name>
@@ -1085,14 +949,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>ncm</name>
@@ -1103,14 +960,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>cest</name>
@@ -1121,14 +971,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>18</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>preco_venda</name>
@@ -1139,14 +982,7 @@ CREATE TABLE vvr_produtos_err
         <type>Number</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>18</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>peso_bruto</name>
@@ -1157,14 +993,7 @@ CREATE TABLE vvr_produtos_err
         <type>Number</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>18</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>estoque</name>
@@ -1175,14 +1004,7 @@ CREATE TABLE vvr_produtos_err
         <type>Number</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>18</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>estoque_minimo</name>
@@ -1193,14 +1015,7 @@ CREATE TABLE vvr_produtos_err
         <type>Number</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>18</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>preco_custo</name>
@@ -1211,14 +1026,7 @@ CREATE TABLE vvr_produtos_err
         <type>Number</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>descricao_grupo</name>
@@ -1229,14 +1037,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>subgrupo</name>
@@ -1247,14 +1048,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>18</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>margem</name>
@@ -1265,14 +1059,7 @@ CREATE TABLE vvr_produtos_err
         <type>Number</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>unidade_de_venda</name>
@@ -1283,14 +1070,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>tax_table_01_ff_ii_nn</name>
@@ -1301,14 +1081,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>codigo_fornecedor_principal</name>
@@ -1319,14 +1092,7 @@ CREATE TABLE vvr_produtos_err
         <type>Integer</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>razao_fornecedor_principal</name>
@@ -1337,14 +1103,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>nome_da_marca</name>
@@ -1355,14 +1114,7 @@ CREATE TABLE vvr_produtos_err
         <type>String</type>
       </meta>
       <meta>
-        <conversion_mask/>
-        <currency_symbol/>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <decimal_symbol/>
-        <encoding/>
-        <grouping_symbol/>
         <length>-2</length>
         <lenient_string_to_number>N</lenient_string_to_number>
         <name>tipo_do_produto</name>
