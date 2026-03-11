@@ -86,7 +86,7 @@
     <attributes/>
     <GUI>
       <xloc>656</xloc>
-      <yloc>224</yloc>
+      <yloc>272</yloc>
     </GUI>
   </transform>
   <transform>
@@ -105,7 +105,16 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
+        <jsScript_script>ipi
+frete
+st
+Credito_icms
+multiplo_de_venda
+
+
+
+
+//Script here
 
 function ifnull(valor, valorPadrao) {
   return valor !== null &amp;&amp; valor !== undefined ? valor : valorPadrao;
@@ -184,6 +193,16 @@ estoque_minimo = ifnull(estoque_minimo, "").replace('\\N','0');
 preco_custo = ifnull(preco_custo, "").replace('\\N','0');
 
 preco_compra = ifnull(preco_compra, "").replace('\\N','0');
+
+ipi = ifnull(ipi, "").replace('\\N','0');
+
+frete = ifnull(frete, "").replace('\\N','0');
+
+st = ifnull(st, "").replace('\\N','0');
+
+Credito_icms = ifnull(Credito_icms, "").replace('\\N','0');
+
+multiplo_de_venda = ifnull(multiplo_de_venda, "").replace('\\N','0');
 
 margem = ifnull(margem, "").replace('\\N','0');
 
@@ -281,6 +300,17 @@ estoque_minimo = converterValores(estoque_minimo);
 preco_custo = converterValores(preco_custo);
 
 preco_compra = converterValores(preco_compra);
+
+ipi = converterValores(ipi);
+
+frete = converterValores(frete);
+
+st = converterValores(st);
+
+Credito_icms = converterValores(Credito_icms);
+
+multiplo_de_venda = converterValores(multiplo_de_venda);
+
 
 margem = converterValores(margem);
 
@@ -519,6 +549,46 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       <field>
         <name>preco_compra</name>
         <rename>preco_compra</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>ipi</name>
+        <rename>ipi</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>frete</name>
+        <rename>frete</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>st</name>
+        <rename>st</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>Credito_icms</name>
+        <rename>Credito_icms</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>multiplo_de_venda</name>
+        <rename>multiplo_de_venda</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -807,6 +877,66 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <trim_type>none</trim_type>
         <type>String</type>
       </field>
+      <field>
+        <currency/>
+        <decimal/>
+        <format>0.00</format>
+        <group/>
+        <length>-1</length>
+        <name>ipi</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <currency/>
+        <decimal/>
+        <format>0.00</format>
+        <group/>
+        <length>-1</length>
+        <name>frete</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <currency/>
+        <decimal/>
+        <format>0.00</format>
+        <group/>
+        <length>-1</length>
+        <name>st</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <currency/>
+        <decimal/>
+        <format>0.00</format>
+        <group/>
+        <length>-1</length>
+        <name>Credito_icms</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <currency/>
+        <decimal/>
+        <format>0</format>
+        <group/>
+        <length>-1</length>
+        <name>multiplo_de_venda</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
     </fields>
     <file>
       <exclude_filemask/>
@@ -899,6 +1029,11 @@ CREATE TABLE vvr_produtos
 , nome_da_marca TINYTEXT
 , tipo_do_produto TINYTEXT
 , preco_compra DECIMAL(18, 2)
+, ipi DECIMAL(18, 2)
+, frete DECIMAL(18, 2)
+, st DECIMAL(18, 2)
+, credito_icms DECIMAL(18, 2)
+, multiplo_de_venda DECIMAL(18, 2)
 )
 ;
 
@@ -958,6 +1093,11 @@ CREATE TABLE vvr_produtos_err
 , nome_da_marca TINYTEXT
 , tipo_do_produto TINYTEXT
 , preco_compra DECIMAL(18, 2)
+, ipi DECIMAL(18, 2)
+, frete DECIMAL(18, 2)
+, st DECIMAL(18, 2)
+, credito_icms DECIMAL(18, 2)
+, multiplo_de_venda DECIMAL(18, 2)
 )
 ;</sql>
     <update_field/>
@@ -1102,6 +1242,36 @@ CREATE TABLE vvr_produtos_err
       <field>
         <length>-2</length>
         <name>preco_compra</name>
+        <precision>-2</precision>
+        <rename/>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>ipi</name>
+        <precision>-2</precision>
+        <rename/>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>frete</name>
+        <precision>-2</precision>
+        <rename/>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>st</name>
+        <precision>-2</precision>
+        <rename/>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>Credito_icms</name>
+        <precision>-2</precision>
+        <rename/>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>multiplo_de_venda</name>
         <precision>-2</precision>
         <rename/>
       </field>
@@ -1483,6 +1653,96 @@ CREATE TABLE vvr_produtos_err
         <storage_type/>
         <type>Number</type>
       </meta>
+      <meta>
+        <conversion_mask/>
+        <currency_symbol/>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <decimal_symbol/>
+        <encoding/>
+        <grouping_symbol/>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>ipi</name>
+        <precision>2</precision>
+        <rename>ipi</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <conversion_mask/>
+        <currency_symbol/>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <decimal_symbol/>
+        <encoding/>
+        <grouping_symbol/>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>frete</name>
+        <precision>2</precision>
+        <rename>frete</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <conversion_mask/>
+        <currency_symbol/>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <decimal_symbol/>
+        <encoding/>
+        <grouping_symbol/>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>st</name>
+        <precision>2</precision>
+        <rename>st</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <conversion_mask/>
+        <currency_symbol/>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <decimal_symbol/>
+        <encoding/>
+        <grouping_symbol/>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>Credito_icms</name>
+        <precision>2</precision>
+        <rename>Credito_icms</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <conversion_mask/>
+        <currency_symbol/>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <decimal_symbol/>
+        <encoding/>
+        <grouping_symbol/>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>multiplo_de_venda</name>
+        <precision>2</precision>
+        <rename>multiplo_de_venda</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -1503,6 +1763,7 @@ CREATE TABLE vvr_produtos_err
       <schema_name/>
     </partitioning>
     <compress>N</compress>
+    <compress_variables/>
     <directory>%%java.io.tmpdir%%</directory>
     <fields>
       <field>
@@ -1514,6 +1775,8 @@ CREATE TABLE vvr_produtos_err
         <presorted>N</presorted>
       </field>
     </fields>
+    <free_memory/>
+    <sort_prefix>srt</sort_prefix>
     <sort_size>1000000</sort_size>
     <unique_rows>N</unique_rows>
     <attributes/>
@@ -1808,6 +2071,71 @@ CREATE TABLE vvr_produtos_err
       </field>
       <field>
         <in_stream_name>preco_compra</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>ipi</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>frete</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>st</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Credito_icms</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>multiplo_de_venda</in_stream_name>
         <out_stream_name/>
         <trim_type>none</trim_type>
         <lower_upper>none</lower_upper>
