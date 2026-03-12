@@ -27,8 +27,8 @@
       <schedulerType>0</schedulerType>
       <weekDay>1</weekDay>
       <parallel>N</parallel>
-      <xloc>224</xloc>
-      <yloc>48</yloc>
+      <xloc>208</xloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -40,7 +40,7 @@
       <add_time>N</add_time>
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
-      <filename>${PROJECT_HOME}/pipelines/Job_01_Importação_para_tabelas_temporarias.hwf</filename>
+      <filename>${PROJECT_HOME}/workflows/Job_01_Importação_para_tabelas_temporarias.hwf</filename>
       <loglevel>Nothing</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -51,8 +51,8 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>352</xloc>
-      <yloc>96</yloc>
+      <xloc>480</xloc>
+      <yloc>144</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -64,7 +64,7 @@
       <add_time>N</add_time>
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
-      <filename>${PROJECT_HOME}/pipelines/Job_02_Ajustes.hwf</filename>
+      <filename>${PROJECT_HOME}/workflows/Job_02_Ajustes.hwf</filename>
       <loglevel>Nothing</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -75,8 +75,8 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>352</xloc>
-      <yloc>208</yloc>
+      <xloc>624</xloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -88,7 +88,7 @@
       <add_time>N</add_time>
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
-      <filename>${PROJECT_HOME}/pipelines/Job_03_Inserção_dos_produtos.hwf</filename>
+      <filename>${PROJECT_HOME}/workflows/Job_03_Inserção_dos_produtos.hwf</filename>
       <loglevel>Nothing</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -99,8 +99,8 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
+      <xloc>704</xloc>
+      <yloc>144</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -112,7 +112,52 @@
       <add_time>N</add_time>
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
-      <filename>${PROJECT_HOME}/pipelines/Job_04_Inserção_dos_participantes.hwf</filename>
+      <filename>${PROJECT_HOME}/workflows/Job_04_Inserção_dos_participantes.hwf</filename>
+      <loglevel>Nothing</loglevel>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <params_from_previous>N</params_from_previous>
+      <run_configuration>local</run_configuration>
+      <set_append_logfile>N</set_append_logfile>
+      <set_logfile>N</set_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <parallel>N</parallel>
+      <xloc>848</xloc>
+      <yloc>112</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Falha</name>
+      <description/>
+      <type>ABORT</type>
+      <attributes/>
+      <always_log_rows>N</always_log_rows>
+      <parallel>N</parallel>
+      <xloc>624</xloc>
+      <yloc>432</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <xloc>1024</xloc>
+      <yloc>112</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Setar as Variaveis</name>
+      <description/>
+      <type>WORKFLOW</type>
+      <attributes/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <exec_per_row>N</exec_per_row>
+      <filename>${PROJECT_HOME}/workflows/Job_00_Setar_variaveis.hwf</filename>
       <loglevel>Nothing</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -124,39 +169,11 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>352</xloc>
-      <yloc>464</yloc>
-      <attributes_hac/>
-    </action>
-    <action>
-      <name>Falha</name>
-      <description/>
-      <type>ABORT</type>
-      <attributes/>
-      <always_log_rows>N</always_log_rows>
-      <parallel>N</parallel>
-      <xloc>624</xloc>
-      <yloc>288</yloc>
-      <attributes_hac/>
-    </action>
-    <action>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <xloc>352</xloc>
-      <yloc>560</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
   </actions>
   <hops>
-    <hop>
-      <from>Start</from>
-      <to>Importação Tabelas Temporarias</to>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
     <hop>
       <from>Importação Tabelas Temporarias</from>
       <to>Ajustes</to>
@@ -208,6 +225,27 @@
     </hop>
     <hop>
       <from>Participantes</from>
+      <to>Falha</to>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Start</from>
+      <to>Setar as Variaveis</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Setar as Variaveis</from>
+      <to>Importação Tabelas Temporarias</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Setar as Variaveis</from>
       <to>Falha</to>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>

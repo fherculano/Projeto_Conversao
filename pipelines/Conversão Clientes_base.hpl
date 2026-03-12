@@ -73,16 +73,24 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <accept_field/>
     <accept_filenames>N</accept_filenames>
+    <accept_transform_name/>
     <add_to_result_filenames>Y</add_to_result_filenames>
+    <bad_line_files_destination_directory/>
     <bad_line_files_extension>warning</bad_line_files_extension>
     <encoding>UTF-8</encoding>
     <error_ignored>Y</error_ignored>
+    <error_line_files_destination_directory/>
     <error_line_files_extension>error</error_line_files_extension>
     <error_line_skipped>N</error_line_skipped>
+    <extensionFieldName/>
     <fields>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>codigo_do_cliente</name>
         <precision>-1</precision>
@@ -91,7 +99,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>nome_do_cliente</name>
         <precision>-1</precision>
@@ -100,7 +111,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>cpf_cnpj</name>
         <precision>-1</precision>
@@ -109,7 +123,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>rg_inscricao_estadual</name>
         <precision>-1</precision>
@@ -118,7 +135,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>endereco</name>
         <precision>-1</precision>
@@ -127,7 +147,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>num_endereco</name>
         <precision>-1</precision>
@@ -136,7 +159,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>bairro</name>
         <precision>-1</precision>
@@ -145,7 +171,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>cep</name>
         <precision>-1</precision>
@@ -154,7 +183,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>cidade</name>
         <precision>-1</precision>
@@ -163,7 +195,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>uf</name>
         <precision>-1</precision>
@@ -172,7 +207,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>cod_ibge_cidade</name>
         <precision>-1</precision>
@@ -181,7 +219,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>ponto_de_referência</name>
         <precision>-1</precision>
@@ -190,7 +231,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>telefone</name>
         <precision>-1</precision>
@@ -199,7 +243,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>celular</name>
         <precision>-1</precision>
@@ -208,7 +255,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>data_nascimento</name>
         <precision>-1</precision>
@@ -217,7 +267,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>limite_credito</name>
         <precision>-1</precision>
@@ -226,7 +279,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>email</name>
         <precision>-1</precision>
@@ -235,7 +291,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>conjuge</name>
         <precision>-1</precision>
@@ -244,7 +303,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>conjuge_cpf</name>
         <precision>-1</precision>
@@ -253,7 +315,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>nome_pai</name>
         <precision>-1</precision>
@@ -262,7 +327,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>nome_mae</name>
         <precision>-1</precision>
@@ -271,7 +339,10 @@
         <type>String</type>
       </field>
       <field>
+        <currency/>
+        <decimal/>
         <format>#</format>
+        <group/>
         <length>-1</length>
         <name>observacoes</name>
         <precision>-1</precision>
@@ -281,20 +352,35 @@
       </field>
     </fields>
     <file>
+      <exclude_filemask/>
       <file_required>N</file_required>
+      <filemask/>
       <include_subfolders>N</include_subfolders>
-      <name>C:\ETL\Projeto_Conversao\dados_origem\clientes.xlsx</name>
+      <name>${PROJECT_HOME}/dados_origem/clientes.xlsx</name>
     </file>
+    <filefield/>
     <header>Y</header>
+    <hiddenFieldName/>
     <ignore_fields>N</ignore_fields>
+    <lastModificationTimeFieldName/>
     <limit>0</limit>
+    <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
     <noempty>Y</noempty>
+    <pathFieldName/>
+    <rootUriNameFieldName/>
+    <rownumfield/>
+    <schema_definition/>
+    <sheetfield/>
+    <sheetrownumfield/>
     <sheets>
 </sheets>
+    <shortFileFieldName/>
+    <sizeFieldName/>
     <spreadsheet_type>POI</spreadsheet_type>
     <stoponempty>N</stoponempty>
     <strict_types>N</strict_types>
+    <uriNameFieldName/>
     <attributes/>
     <GUI>
       <xloc>576</xloc>
