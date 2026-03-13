@@ -22,11 +22,6 @@
   </notepads>
   <order>
     <hop>
-      <from>Modified JavaScript value</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
       <to>vvr_produtos_err</to>
       <enabled>Y</enabled>
@@ -34,11 +29,6 @@
     <hop>
       <from>normaliza</from>
       <to>Modified JavaScript value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -71,7 +61,48 @@
       <to>Produtos_xls</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
+      <to>Coalesce Fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Coalesce Fields</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <transform>
+    <name>Coalesce Fields</name>
+    <type>Coalesce</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <empty_is_null>N</empty_is_null>
+    <fields>
+      <field>
+        <input>codigo_de_barras, codigo_do_produto</input>
+        <name>codigo_de_barras</name>
+        <remove>N</remove>
+        <type>None</type>
+      </field>
+    </fields>
+    <attributes/>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>96</yloc>
+    </GUI>
+  </transform>
   <transform>
     <name>Dummy (do nothing)</name>
     <type>Dummy</type>
@@ -85,8 +116,8 @@
     </partitioning>
     <attributes/>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>224</yloc>
+      <xloc>656</xloc>
+      <yloc>272</yloc>
     </GUI>
   </transform>
   <transform>
@@ -183,6 +214,18 @@ estoque_minimo = ifnull(estoque_minimo, "").replace('\\N','0');
 
 preco_custo = ifnull(preco_custo, "").replace('\\N','0');
 
+preco_compra = ifnull(preco_compra, "").replace('\\N','0');
+
+ipi = ifnull(ipi, "").replace('\\N','0');
+
+frete = ifnull(frete, "").replace('\\N','0');
+
+st = ifnull(st, "").replace('\\N','0');
+
+Credito_icms = ifnull(Credito_icms, "").replace('\\N','0');
+
+multiplo_de_venda = ifnull(multiplo_de_venda, "").replace('\\N','0');
+
 margem = ifnull(margem, "").replace('\\N','0');
 
 subgrupo = ifnull(subgrupo, "").replace('\\N','');
@@ -195,11 +238,11 @@ codigo_de_barras = ifnull(codigo_de_barras, "").replace('\\N','');
 
 descricao = ifnull(descricao, "").replace('\\N','');
 
-cst = ifnull(cst, "").replace('\\N','');
+//cst = ifnull(cst, "").replace('\\N','');
 
 cest = ifnull(cest, "").replace('\\N','');
 
-cfop = ifnull(cfop, "").replace('\\N','');
+//cfop = ifnull(cfop, "").replace('\\N','');
 
 descricao_grupo = ifnull(descricao_grupo, "").replace('\\N','');
 
@@ -261,7 +304,11 @@ nome_da_marca = upper(nome_da_marca);
 
 nome_da_marca = tiraMaisDeUmEspaço(ifnull(nome_da_marca,""));
 
+//=====
 
+codigo_de_barras = tiraAcentos(ifnull(codigo_de_barras,"")); 
+
+codigo_de_barras = tiraNaoAlfaNum(ifnull(codigo_de_barras,"")); 
 
 //Retira os caracteres não numéricos
 codigo_de_barras = extrairNumeros(codigo_de_barras); 
@@ -278,11 +325,24 @@ estoque_minimo = converterValores(estoque_minimo);
 
 preco_custo = converterValores(preco_custo);
 
+preco_compra = converterValores(preco_compra);
+
+ipi = converterValores(ipi);
+
+frete = converterValores(frete);
+
+st = converterValores(st);
+
+Credito_icms = converterValores(Credito_icms);
+
+multiplo_de_venda = converterValores(multiplo_de_venda);
+
+
 margem = converterValores(margem);
 
 //Extrair só Numeros
 
-cfop = extrairNumeros(cfop);
+//cfop = extrairNumeros(cfop);
 
 //Replaces pós
 
@@ -290,9 +350,9 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
 
 //Tratamento de dados
 
-    if (codigo_de_barras == null || codigo_de_barras === undefined || codigo_de_barras === '') {
-      codigo_de_barras = codigo_do_produto;
-  }</jsScript_script>
+//if (!codigo_de_barras || codigo_de_barras.trim() === "") {
+//    codigo_de_barras = codigo_do_produto;
+//}</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
@@ -302,15 +362,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
-      </field>
-      <field>
-        <name>cfop</name>
-        <rename>cfop</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>codigo_de_barras</name>
@@ -318,7 +370,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>codigo_do_produto</name>
@@ -326,7 +378,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>codigo_fornecedor_principal</name>
@@ -334,15 +386,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
-      </field>
-      <field>
-        <name>cst</name>
-        <rename>cst</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>descricao</name>
@@ -350,7 +394,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>descricao_grupo</name>
@@ -358,7 +402,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>estoque</name>
@@ -366,7 +410,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>estoque_minimo</name>
@@ -374,7 +418,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>margem</name>
@@ -382,7 +426,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>nome_da_marca</name>
@@ -390,7 +434,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>peso_bruto</name>
@@ -398,7 +442,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>preco_custo</name>
@@ -406,7 +450,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>preco_venda</name>
@@ -414,7 +458,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>razao_fornecedor_principal</name>
@@ -422,7 +466,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>referencia</name>
@@ -430,7 +474,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>subgrupo</name>
@@ -438,7 +482,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>tax_table_01_ff_ii_nn</name>
@@ -446,7 +490,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>tipo_do_produto</name>
@@ -454,7 +498,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>unidade_de_venda</name>
@@ -462,7 +506,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
       </field>
       <field>
         <name>ncm</name>
@@ -470,12 +514,116 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>Y</replace>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>ifnull</name>
+        <rename>ifnull</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>tiraAcentos</name>
+        <rename>tiraAcentos</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>tiraNaoAlfaNum</name>
+        <rename>tiraNaoAlfaNum</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>tiraMaisDeUmEspaço</name>
+        <rename>tiraMaisDeUmEspaço</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>possuiApenasNumeros</name>
+        <rename>possuiApenasNumeros</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>extrairNumeros</name>
+        <rename>extrairNumeros</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>converterValores</name>
+        <rename>converterValores</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>preco_compra</name>
+        <rename>preco_compra</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>ipi</name>
+        <rename>ipi</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>frete</name>
+        <rename>frete</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>st</name>
+        <rename>st</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>Credito_icms</name>
+        <rename>Credito_icms</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>multiplo_de_venda</name>
+        <rename>multiplo_de_venda</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
       </field>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>928</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -490,24 +638,16 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_field/>
     <accept_filenames>N</accept_filenames>
-    <accept_transform_name/>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <bad_line_files_destination_directory/>
     <bad_line_files_extension>warning</bad_line_files_extension>
     <encoding>UTF-8</encoding>
     <error_ignored>Y</error_ignored>
-    <error_line_files_destination_directory/>
     <error_line_files_extension>error</error_line_files_extension>
     <error_line_skipped>N</error_line_skipped>
-    <extensionFieldName/>
     <fields>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>codigo_do_produto</name>
         <precision>-1</precision>
@@ -516,10 +656,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>codigo_de_barras</name>
         <precision>-1</precision>
@@ -528,10 +665,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>descricao</name>
         <precision>-1</precision>
@@ -540,10 +674,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>referencia</name>
         <precision>-1</precision>
@@ -552,10 +683,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>ncm</name>
         <precision>-1</precision>
@@ -564,22 +692,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
-        <length>-1</length>
-        <name>cst</name>
-        <precision>-1</precision>
-        <repeat>N</repeat>
-        <trim_type>none</trim_type>
-        <type>String</type>
-      </field>
-      <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
         <length>-1</length>
         <name>cest</name>
         <precision>-1</precision>
@@ -588,10 +701,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
+        <format>0.00</format>
         <length>-1</length>
         <name>preco_venda</name>
         <precision>-1</precision>
@@ -600,10 +710,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
+        <format>0.00</format>
         <length>-1</length>
         <name>peso_bruto</name>
         <precision>-1</precision>
@@ -612,22 +719,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
-        <length>-1</length>
-        <name>cfop</name>
-        <precision>-1</precision>
-        <repeat>N</repeat>
-        <trim_type>none</trim_type>
-        <type>String</type>
-      </field>
-      <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
+        <format>0.00</format>
         <length>-1</length>
         <name>estoque</name>
         <precision>-1</precision>
@@ -636,10 +728,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
+        <format>0.00</format>
         <length>-1</length>
         <name>estoque_minimo</name>
         <precision>-1</precision>
@@ -648,10 +737,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
+        <format>0.00</format>
         <length>-1</length>
         <name>preco_custo</name>
         <precision>-1</precision>
@@ -660,10 +746,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>descricao_grupo</name>
         <precision>-1</precision>
@@ -672,10 +755,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>subgrupo</name>
         <precision>-1</precision>
@@ -684,10 +764,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format>0</format>
-        <group/>
+        <format>0.00</format>
         <length>-1</length>
         <name>margem</name>
         <precision>-1</precision>
@@ -696,10 +773,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>unidade_de_venda</name>
         <precision>-1</precision>
@@ -708,10 +782,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>tax_table_01_ff_ii_nn</name>
         <precision>-1</precision>
@@ -720,10 +791,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>codigo_fornecedor_principal</name>
         <precision>-1</precision>
@@ -732,10 +800,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>razao_fornecedor_principal</name>
         <precision>-1</precision>
@@ -744,10 +809,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>nome_da_marca</name>
         <precision>-1</precision>
@@ -756,10 +818,7 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
         <format>0</format>
-        <group/>
         <length>-1</length>
         <name>tipo_do_produto</name>
         <precision>-1</precision>
@@ -767,29 +826,71 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <trim_type>none</trim_type>
         <type>String</type>
       </field>
+      <field>
+        <format>0.00</format>
+        <length>-1</length>
+        <name>preco_compra</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <format>0.00</format>
+        <length>-1</length>
+        <name>ipi</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <format>0.00</format>
+        <length>-1</length>
+        <name>frete</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <format>0.00</format>
+        <length>-1</length>
+        <name>st</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <format>0.00</format>
+        <length>-1</length>
+        <name>Credito_icms</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <format>0</format>
+        <length>-1</length>
+        <name>multiplo_de_venda</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>none</trim_type>
+        <type>String</type>
+      </field>
     </fields>
     <file>
-      <exclude_filemask/>
       <file_required>N</file_required>
-      <filemask/>
       <include_subfolders>N</include_subfolders>
       <name>${PROJECT_HOME}/dados_origem/produtos.xlsx</name>
     </file>
-    <filefield/>
     <header>Y</header>
-    <hiddenFieldName/>
     <ignore_fields>N</ignore_fields>
-    <lastModificationTimeFieldName/>
     <limit>0</limit>
-    <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
     <noempty>Y</noempty>
-    <pathFieldName/>
-    <rootUriNameFieldName/>
-    <rownumfield/>
-    <schema_definition/>
-    <sheetfield/>
-    <sheetrownumfield/>
     <sheets>
       <sheet>
         <name>def_campos_produtos</name>
@@ -797,15 +898,12 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
         <startrow>0</startrow>
       </sheet>
     </sheets>
-    <shortFileFieldName/>
-    <sizeFieldName/>
     <spreadsheet_type>POI</spreadsheet_type>
     <stoponempty>N</stoponempty>
     <strict_types>N</strict_types>
-    <uriNameFieldName/>
     <attributes/>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>528</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -830,36 +928,44 @@ descricao_grupo = descricao_grupo.replace('DECOR AAO','DECORACAO');
     <single_statement>Y</single_statement>
     <sql>DROP TABLE IF EXISTS vvr_produtos;
 
+COMMIT;
+
 CREATE TABLE vvr_produtos
 (
-id INT AUTO_INCREMENT PRIMARY KEY
+  id INT AUTO_INCREMENT PRIMARY KEY
 , codigo_do_produto INT
-, codigo_de_barras TEXT
-, descricao TEXT
-, referencia TEXT
-, ncm TEXT
-, cst TEXT
-, cest TEXT
+, codigo_de_barras TINYTEXT
+, descricao TINYTEXT
+, referencia TINYTEXT
+, ncm TINYTEXT
+, cest TINYTEXT
 , preco_venda DECIMAL(18, 2)
 , peso_bruto DECIMAL(18, 3)
-, cfop TEXT
 , estoque DECIMAL(18, 3)
 , estoque_minimo DECIMAL(18, 3)
 , preco_custo DECIMAL(18, 2)
-, descricao_grupo TEXT
-, subgrupo TEXT
+, descricao_grupo TINYTEXT
+, subgrupo TINYTEXT
 , margem DECIMAL(18, 2)
-, unidade_de_venda TEXT
-, tax_table_01_ff_ii_nn TEXT
+, unidade_de_venda TINYTEXT
+, tax_table_01_ff_ii_nn TINYTEXT
 , codigo_fornecedor_principal INT
-, razao_fornecedor_principal TEXT
-, nome_da_marca TEXT
-, tipo_do_produto TEXT
+, razao_fornecedor_principal TINYTEXT
+, nome_da_marca TINYTEXT
+, tipo_do_produto TINYTEXT
+, preco_compra DECIMAL(18, 2)
+, ipi DECIMAL(18, 2)
+, frete DECIMAL(18, 2)
+, st DECIMAL(18, 2)
+, credito_icms DECIMAL(18, 2)
+, multiplo_de_venda DECIMAL(18, 2)
 )
-;</sql>
+;
+
+COMMIT;</sql>
     <attributes/>
     <GUI>
-      <xloc>160</xloc>
+      <xloc>96</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -887,33 +993,37 @@ id INT AUTO_INCREMENT PRIMARY KEY
 
 CREATE TABLE vvr_produtos_err
 (
-  codigo_do_produto TEXT
-, codigo_de_barras TEXT
-, descricao TEXT
-, referencia TEXT
-, ncm TEXT
-, cst TEXT
-, cest TEXT
-, preco_venda TEXT
-, peso_bruto TEXT
-, cfop TEXT
-, estoque TEXT
-, estoque_minimo TEXT
-, preco_custo TEXT
-, descricao_grupo TEXT
-, subgrupo TEXT
-, margem TEXT
-, unidade_de_venda TEXT
-, tax_table_01_ff_ii_nn TEXT
-, codigo_fornecedor_principal TEXT
-, razao_fornecedor_principal TEXT
-, nome_da_marca TEXT
-, tipo_do_produto TEXT
+  codigo_do_produto TINYTEXT
+, codigo_de_barras TINYTEXT
+, descricao TINYTEXT
+, referencia TINYTEXT
+, ncm TINYTEXT
+, cest TINYTEXT
+, preco_venda TINYTEXT
+, peso_bruto TINYTEXT
+, estoque TINYTEXT
+, estoque_minimo TINYTEXT
+, preco_custo TINYTEXT
+, descricao_grupo TINYTEXT
+, subgrupo TINYTEXT
+, margem TINYTEXT
+, unidade_de_venda TINYTEXT
+, tax_table_01_ff_ii_nn TINYTEXT
+, codigo_fornecedor_principal TINYTEXT
+, razao_fornecedor_principal TINYTEXT
+, nome_da_marca TINYTEXT
+, tipo_do_produto TINYTEXT
+, preco_compra DECIMAL(18, 2)
+, ipi DECIMAL(18, 2)
+, frete DECIMAL(18, 2)
+, st DECIMAL(18, 2)
+, credito_icms DECIMAL(18, 2)
+, multiplo_de_venda DECIMAL(18, 2)
 )
 ;</sql>
     <attributes/>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>352</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -956,11 +1066,6 @@ CREATE TABLE vvr_produtos_err
       </field>
       <field>
         <length>-2</length>
-        <name>cst</name>
-        <precision>-2</precision>
-      </field>
-      <field>
-        <length>-2</length>
         <name>cest</name>
         <precision>-2</precision>
       </field>
@@ -972,11 +1077,6 @@ CREATE TABLE vvr_produtos_err
       <field>
         <length>-2</length>
         <name>peso_bruto</name>
-        <precision>-2</precision>
-      </field>
-      <field>
-        <length>-2</length>
-        <name>cfop</name>
         <precision>-2</precision>
       </field>
       <field>
@@ -1039,6 +1139,36 @@ CREATE TABLE vvr_produtos_err
         <name>tipo_do_produto</name>
         <precision>-2</precision>
       </field>
+      <field>
+        <length>-2</length>
+        <name>preco_compra</name>
+        <precision>-2</precision>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>ipi</name>
+        <precision>-2</precision>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>frete</name>
+        <precision>-2</precision>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>st</name>
+        <precision>-2</precision>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>Credito_icms</name>
+        <precision>-2</precision>
+      </field>
+      <field>
+        <length>-2</length>
+        <name>multiplo_de_venda</name>
+        <precision>-2</precision>
+      </field>
       <meta>
         <date_format_lenient>N</date_format_lenient>
         <length>-2</length>
@@ -1046,6 +1176,7 @@ CREATE TABLE vvr_produtos_err
         <name>codigo_do_produto</name>
         <precision>-2</precision>
         <rename>codigo_do_produto</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Integer</type>
       </meta>
@@ -1056,6 +1187,7 @@ CREATE TABLE vvr_produtos_err
         <name>codigo_de_barras</name>
         <precision>-2</precision>
         <rename>codigo_de_barras</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1066,6 +1198,7 @@ CREATE TABLE vvr_produtos_err
         <name>descricao</name>
         <precision>-2</precision>
         <rename>descricao</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1076,6 +1209,7 @@ CREATE TABLE vvr_produtos_err
         <name>referencia</name>
         <precision>-2</precision>
         <rename>referencia</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1086,16 +1220,7 @@ CREATE TABLE vvr_produtos_err
         <name>ncm</name>
         <precision>-2</precision>
         <rename>ncm</rename>
-        <storage_type/>
-        <type>String</type>
-      </meta>
-      <meta>
-        <date_format_lenient>N</date_format_lenient>
-        <length>-2</length>
-        <lenient_string_to_number>N</lenient_string_to_number>
-        <name>cst</name>
-        <precision>-2</precision>
-        <rename>cst</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1106,6 +1231,7 @@ CREATE TABLE vvr_produtos_err
         <name>cest</name>
         <precision>-2</precision>
         <rename>cest</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1116,6 +1242,7 @@ CREATE TABLE vvr_produtos_err
         <name>preco_venda</name>
         <precision>2</precision>
         <rename>preco_venda</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Number</type>
       </meta>
@@ -1126,18 +1253,9 @@ CREATE TABLE vvr_produtos_err
         <name>peso_bruto</name>
         <precision>3</precision>
         <rename>peso_bruto</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Number</type>
-      </meta>
-      <meta>
-        <date_format_lenient>N</date_format_lenient>
-        <length>-2</length>
-        <lenient_string_to_number>N</lenient_string_to_number>
-        <name>cfop</name>
-        <precision>-2</precision>
-        <rename>cfop</rename>
-        <storage_type/>
-        <type>String</type>
       </meta>
       <meta>
         <date_format_lenient>N</date_format_lenient>
@@ -1146,6 +1264,7 @@ CREATE TABLE vvr_produtos_err
         <name>estoque</name>
         <precision>3</precision>
         <rename>estoque</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Number</type>
       </meta>
@@ -1156,6 +1275,7 @@ CREATE TABLE vvr_produtos_err
         <name>estoque_minimo</name>
         <precision>3</precision>
         <rename>estoque_minimo</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Number</type>
       </meta>
@@ -1166,6 +1286,7 @@ CREATE TABLE vvr_produtos_err
         <name>preco_custo</name>
         <precision>2</precision>
         <rename>preco_custo</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Number</type>
       </meta>
@@ -1176,6 +1297,7 @@ CREATE TABLE vvr_produtos_err
         <name>descricao_grupo</name>
         <precision>-2</precision>
         <rename>descricao_grupo</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1186,6 +1308,7 @@ CREATE TABLE vvr_produtos_err
         <name>subgrupo</name>
         <precision>-2</precision>
         <rename>subgrupo</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1196,6 +1319,7 @@ CREATE TABLE vvr_produtos_err
         <name>margem</name>
         <precision>2</precision>
         <rename>margem</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Number</type>
       </meta>
@@ -1206,6 +1330,7 @@ CREATE TABLE vvr_produtos_err
         <name>unidade_de_venda</name>
         <precision>-2</precision>
         <rename>unidade_de_venda</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1216,6 +1341,7 @@ CREATE TABLE vvr_produtos_err
         <name>tax_table_01_ff_ii_nn</name>
         <precision>-2</precision>
         <rename>tax_table_01_ff_ii_nn</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1226,6 +1352,7 @@ CREATE TABLE vvr_produtos_err
         <name>codigo_fornecedor_principal</name>
         <precision>-2</precision>
         <rename>codigo_fornecedor_principal</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>Integer</type>
       </meta>
@@ -1236,6 +1363,7 @@ CREATE TABLE vvr_produtos_err
         <name>razao_fornecedor_principal</name>
         <precision>-2</precision>
         <rename>razao_fornecedor_principal</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1246,6 +1374,7 @@ CREATE TABLE vvr_produtos_err
         <name>nome_da_marca</name>
         <precision>-2</precision>
         <rename>nome_da_marca</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
       </meta>
@@ -1256,14 +1385,81 @@ CREATE TABLE vvr_produtos_err
         <name>tipo_do_produto</name>
         <precision>-2</precision>
         <rename>tipo_do_produto</rename>
+        <roundingType>half_even</roundingType>
         <storage_type/>
         <type>String</type>
+      </meta>
+      <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>preco_compra</name>
+        <precision>2</precision>
+        <rename>preco_compra</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>ipi</name>
+        <precision>2</precision>
+        <rename>ipi</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>frete</name>
+        <precision>2</precision>
+        <rename>frete</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>st</name>
+        <precision>2</precision>
+        <rename>st</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>Credito_icms</name>
+        <precision>2</precision>
+        <rename>Credito_icms</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
+      </meta>
+      <meta>
+        <date_format_lenient>N</date_format_lenient>
+        <length>18</length>
+        <lenient_string_to_number>N</lenient_string_to_number>
+        <name>multiplo_de_venda</name>
+        <precision>2</precision>
+        <rename>multiplo_de_venda</rename>
+        <roundingType>half_even</roundingType>
+        <storage_type/>
+        <type>Number</type>
       </meta>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>1136</xloc>
+      <xloc>1344</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -1290,11 +1486,12 @@ CREATE TABLE vvr_produtos_err
         <presorted>N</presorted>
       </field>
     </fields>
+    <sort_prefix>srt</sort_prefix>
     <sort_size>1000000</sort_size>
     <unique_rows>N</unique_rows>
     <attributes/>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1536</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -1319,7 +1516,7 @@ CREATE TABLE vvr_produtos_err
     <reject_duplicate_row>Y</reject_duplicate_row>
     <attributes/>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>656</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -1388,19 +1585,6 @@ CREATE TABLE vvr_produtos_err
         <remove_special_characters>none</remove_special_characters>
       </field>
       <field>
-        <in_stream_name>cst</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>none</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-      <field>
         <in_stream_name>cest</in_stream_name>
         <out_stream_name/>
         <trim_type>none</trim_type>
@@ -1428,19 +1612,6 @@ CREATE TABLE vvr_produtos_err
       </field>
       <field>
         <in_stream_name>peso_bruto</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>none</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-      <field>
-        <in_stream_name>cfop</in_stream_name>
         <out_stream_name/>
         <trim_type>none</trim_type>
         <lower_upper>none</lower_upper>
@@ -1608,10 +1779,88 @@ CREATE TABLE vvr_produtos_err
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
+      <field>
+        <in_stream_name>preco_compra</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>ipi</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>frete</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>st</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Credito_icms</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>multiplo_de_venda</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>848</xloc>
+      <xloc>784</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -1649,7 +1898,7 @@ CREATE TABLE vvr_produtos_err
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1408</xloc>
+      <xloc>1664</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -1687,8 +1936,8 @@ CREATE TABLE vvr_produtos_err
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>272</yloc>
+      <xloc>1344</xloc>
+      <yloc>240</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
