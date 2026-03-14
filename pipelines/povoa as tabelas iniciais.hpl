@@ -217,12 +217,42 @@
     </hop>
     <hop>
       <from>app_cfops_moves_box output</from>
-      <to>Block this step until steps finish 9 2</to>
+      <to>Block this step until steps finish 10</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Block this step until steps finish 9 2</from>
+      <from>Block this step until steps finish 10</from>
       <to>Esvazia app_product_type_list</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block this step until steps finish 11</from>
+      <to>Esvazia permissions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Esvazia permissions</from>
+      <to>permissions input</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>permissions input</from>
+      <to>permissions output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>app_product_type_list output</from>
+      <to>Block this step until steps finish 11</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>app_IBGE_district output</from>
+      <to>Block this step until steps finish 7</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block this step until steps finish 7</from>
+      <to>Esvazia app_participants_categories</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -383,7 +413,7 @@
     </transforms>
     <attributes/>
     <GUI>
-      <xloc>1504</xloc>
+      <xloc>1520</xloc>
       <yloc>336</yloc>
     </GUI>
   </transform>
@@ -408,6 +438,29 @@
     <GUI>
       <xloc>1920</xloc>
       <yloc>112</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Block this step until steps finish 10</name>
+    <type>BlockUntilTransformsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <transforms>
+      <transform>
+        <CopyNr>0</CopyNr>
+        <name>app_cfops_moves_box output</name>
+      </transform>
+    </transforms>
+    <attributes/>
+    <GUI>
+      <xloc>1936</xloc>
+      <yloc>304</yloc>
     </GUI>
   </transform>
   <transform>
@@ -736,8 +789,41 @@ TRUNCATE TABLE app_participants_categories;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>960</xloc>
+      <xloc>928</xloc>
       <yloc>512</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Esvazia app_product_type_list</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE app_product_type_list;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;</sql>
+    <attributes/>
+    <GUI>
+      <xloc>1744</xloc>
+      <yloc>400</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1209,7 +1295,7 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>2128</xloc>
+      <xloc>2192</xloc>
       <yloc>208</yloc>
     </GUI>
   </transform>
@@ -1370,45 +1456,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1360</xloc>
+      <xloc>1440</xloc>
       <yloc>512</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Esvazia app_product_type_list</name>
-    <type>ExecSql</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <arguments>
-</arguments>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
-    <execute_each_row>N</execute_each_row>
-    <insert_field/>
-    <quoteString>N</quoteString>
-    <read_field/>
-    <replace_variables>N</replace_variables>
-    <set_params>N</set_params>
-    <single_statement>Y</single_statement>
-    <sql>-- Desabilita a verificação de chaves estrangeiras
-SET FOREIGN_KEY_CHECKS = 0;
-
--- Limpa as tabelas e reseta o autoincremento
-TRUNCATE TABLE app_product_type_list;
-
--- Reabilita a verificação de chaves estrangeiras
-SET FOREIGN_KEY_CHECKS = 1;</sql>
-    <update_field/>
-    <attributes/>
-    <GUI>
-      <xloc>1744</xloc>
-      <yloc>400</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1457,14 +1506,11 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
     <return_keys>N</return_keys>
     <schema>base_conversoes</schema>
     <specify_fields>N</specify_fields>
     <table>app_product_type_list</table>
-    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>N</truncate>
@@ -1476,7 +1522,7 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     </GUI>
   </transform>
   <transform>
-    <name>Block this step until steps finish 9 2</name>
+    <name>Block this step until steps finish 11</name>
     <type>BlockUntilTransformsFinish</type>
     <description/>
     <distribute>Y</distribute>
@@ -1489,13 +1535,141 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <transforms>
       <transform>
         <CopyNr>0</CopyNr>
-        <name>app_cfops_output</name>
+        <name>app_product_type_list output</name>
       </transform>
     </transforms>
     <attributes/>
     <GUI>
-      <xloc>1936</xloc>
-      <yloc>304</yloc>
+      <xloc>1952</xloc>
+      <yloc>528</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Esvazia permissions</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE permissions;
+
+COMMIT;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;
+
+COMMIT;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>1744</xloc>
+      <yloc>640</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>permissions input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_PROD_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM permissions;</sql>
+    <variables_active>N</variables_active>
+    <attributes/>
+    <GUI>
+      <xloc>1968</xloc>
+      <yloc>640</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>permissions output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
+    <commit>1000</commit>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>permissions</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>2160</xloc>
+      <yloc>640</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Block this step until steps finish 7</name>
+    <type>BlockUntilTransformsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <transforms>
+      <transform>
+        <CopyNr>0</CopyNr>
+        <name>app_IBGE_district output</name>
+      </transform>
+    </transforms>
+    <attributes/>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>432</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
