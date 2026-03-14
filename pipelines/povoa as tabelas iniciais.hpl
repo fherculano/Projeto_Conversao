@@ -121,91 +121,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>app_acquirers_output</from>
-      <to>Block this step until steps finish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish</from>
-      <to>Esvazia app_bank</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_bank_output</from>
-      <to>Block this step until steps finish 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 2</from>
-      <to>Esvazia app_IBGE_city</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_IBGE_city output</from>
-      <to>Block this step until steps finish 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 3</from>
-      <to>Esvazia app_moviment_category</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_moviment_category output</from>
-      <to>Block this step until steps finish 4</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 4</from>
-      <to>Esvazia anp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_anp_output</from>
-      <to>Block this step until steps finish 5</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 5</from>
-      <to>Esvazia app_business_unit</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_business_unit_output</from>
-      <to>Block this step until steps finish 6</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 6</from>
-      <to>Esvazia app_IBGE_district</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_participants_categories output</from>
-      <to>Block this step until steps finish 8</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 8</from>
-      <to>Esvazia app_cfops</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_cfops_output</from>
-      <to>Block this step until steps finish 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 9</from>
-      <to>Esvazia app_cfops_moves_box</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Generate rows</from>
-      <to>Esvazia app_acquirers</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Esvazia app_product_type_list</from>
       <to>app_product_type_list input</to>
       <enabled>Y</enabled>
@@ -213,21 +128,6 @@
     <hop>
       <from>app_product_type_list input</from>
       <to>app_product_type_list output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_cfops_moves_box output</from>
-      <to>Block this step until steps finish 10</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 10</from>
-      <to>Esvazia app_product_type_list</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 11</from>
-      <to>Esvazia permissions</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -240,229 +140,7 @@
       <to>permissions output</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>app_product_type_list output</from>
-      <to>Block this step until steps finish 11</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>app_IBGE_district output</from>
-      <to>Block this step until steps finish 7</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 7</from>
-      <to>Esvazia app_participants_categories</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
-  <transform>
-    <name>Block this step until steps finish</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_acquirers_output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>128</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 2</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_bank_output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>288</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 3</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_IBGE_city output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>448</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 4</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_moviment_category output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>400</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 5</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_anp_output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1104</xloc>
-      <yloc>112</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 6</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_business_unit_output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1104</xloc>
-      <yloc>272</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 8</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_participants_categories output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1520</xloc>
-      <yloc>336</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 9</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_cfops_output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1920</xloc>
-      <yloc>112</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 10</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_cfops_moves_box output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1936</xloc>
-      <yloc>304</yloc>
-    </GUI>
-  </transform>
   <transform>
     <name>Esvazia anp</name>
     <type>ExecSql</type>
@@ -492,8 +170,8 @@ TRUNCATE TABLE app_anp;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>32</yloc>
+      <xloc>96</xloc>
+      <yloc>448</yloc>
     </GUI>
   </transform>
   <transform>
@@ -525,8 +203,8 @@ TRUNCATE TABLE app_IBGE_city;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>368</yloc>
+      <xloc>96</xloc>
+      <yloc>224</yloc>
     </GUI>
   </transform>
   <transform>
@@ -558,8 +236,8 @@ TRUNCATE TABLE app_IBGE_district;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>352</yloc>
+      <xloc>592</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform>
@@ -591,8 +269,8 @@ TRUNCATE TABLE app_acquirers;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>48</yloc>
+      <xloc>96</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform>
@@ -624,8 +302,8 @@ TRUNCATE TABLE app_bank;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>224</yloc>
+      <xloc>96</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -657,8 +335,8 @@ TRUNCATE TABLE app_business_unit;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>208</yloc>
+      <xloc>96</xloc>
+      <yloc>560</yloc>
     </GUI>
   </transform>
   <transform>
@@ -690,8 +368,8 @@ TRUNCATE TABLE app_cfops;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>1760</xloc>
-      <yloc>32</yloc>
+      <xloc>592</xloc>
+      <yloc>224</yloc>
     </GUI>
   </transform>
   <transform>
@@ -723,8 +401,8 @@ TRUNCATE TABLE app_cfops_moves_box;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>1744</xloc>
-      <yloc>208</yloc>
+      <xloc>592</xloc>
+      <yloc>320</yloc>
     </GUI>
   </transform>
   <transform>
@@ -756,8 +434,8 @@ TRUNCATE TABLE app_moviment_category;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>512</yloc>
+      <xloc>96</xloc>
+      <yloc>336</yloc>
     </GUI>
   </transform>
   <transform>
@@ -789,8 +467,8 @@ TRUNCATE TABLE app_participants_categories;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>512</yloc>
+      <xloc>592</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -822,32 +500,8 @@ TRUNCATE TABLE app_product_type_list;
 SET FOREIGN_KEY_CHECKS = 1;</sql>
     <attributes/>
     <GUI>
-      <xloc>1744</xloc>
-      <yloc>400</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Generate rows</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-</fields>
-    <interval_in_ms>5000</interval_in_ms>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <limit>10</limit>
-    <never_ending>N</never_ending>
-    <row_time_field>now</row_time_field>
-    <attributes/>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>48</yloc>
+      <xloc>592</xloc>
+      <yloc>432</yloc>
     </GUI>
   </transform>
   <transform>
@@ -868,8 +522,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>368</yloc>
+      <xloc>224</xloc>
+      <yloc>256</yloc>
     </GUI>
   </transform>
   <transform>
@@ -907,8 +561,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>368</yloc>
+      <xloc>368</xloc>
+      <yloc>224</yloc>
     </GUI>
   </transform>
   <transform>
@@ -929,8 +583,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>352</yloc>
+      <xloc>736</xloc>
+      <yloc>64</yloc>
     </GUI>
   </transform>
   <transform>
@@ -968,8 +622,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1280</xloc>
-      <yloc>352</yloc>
+      <xloc>880</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform>
@@ -990,8 +644,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>48</yloc>
+      <xloc>224</xloc>
+      <yloc>64</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1029,8 +683,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>48</yloc>
+      <xloc>368</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1051,8 +705,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>224</yloc>
+      <xloc>224</xloc>
+      <yloc>160</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1073,8 +727,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1088</xloc>
-      <yloc>32</yloc>
+      <xloc>224</xloc>
+      <yloc>496</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1112,8 +766,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>32</yloc>
+      <xloc>368</xloc>
+      <yloc>448</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1151,8 +805,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>224</yloc>
+      <xloc>368</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1173,8 +827,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1104</xloc>
-      <yloc>208</yloc>
+      <xloc>224</xloc>
+      <yloc>592</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1212,8 +866,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>208</yloc>
+      <xloc>368</xloc>
+      <yloc>560</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1234,8 +888,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1920</xloc>
-      <yloc>32</yloc>
+      <xloc>736</xloc>
+      <yloc>256</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1256,8 +910,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1968</xloc>
-      <yloc>208</yloc>
+      <xloc>736</xloc>
+      <yloc>352</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1295,8 +949,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>2192</xloc>
-      <yloc>208</yloc>
+      <xloc>880</xloc>
+      <yloc>320</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1334,8 +988,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>2096</xloc>
-      <yloc>32</yloc>
+      <xloc>880</xloc>
+      <yloc>224</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1356,8 +1010,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>512</yloc>
+      <xloc>224</xloc>
+      <yloc>368</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1395,8 +1049,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>528</yloc>
+      <xloc>368</xloc>
+      <yloc>336</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1417,8 +1071,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1168</xloc>
-      <yloc>512</yloc>
+      <xloc>736</xloc>
+      <yloc>160</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1456,8 +1110,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1440</xloc>
-      <yloc>512</yloc>
+      <xloc>880</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1478,8 +1132,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1968</xloc>
-      <yloc>400</yloc>
+      <xloc>736</xloc>
+      <yloc>464</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1517,31 +1171,8 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>2176</xloc>
-      <yloc>400</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 11</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_product_type_list output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1952</xloc>
-      <yloc>528</yloc>
+      <xloc>880</xloc>
+      <yloc>432</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1581,8 +1212,8 @@ COMMIT;</sql>
     <update_field/>
     <attributes/>
     <GUI>
-      <xloc>1744</xloc>
-      <yloc>640</yloc>
+      <xloc>592</xloc>
+      <yloc>544</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1603,8 +1234,8 @@ COMMIT;</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>1968</xloc>
-      <yloc>640</yloc>
+      <xloc>736</xloc>
+      <yloc>576</yloc>
     </GUI>
   </transform>
   <transform>
@@ -1645,31 +1276,8 @@ COMMIT;</sql>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>2160</xloc>
-      <yloc>640</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Block this step until steps finish 7</name>
-    <type>BlockUntilTransformsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <transforms>
-      <transform>
-        <CopyNr>0</CopyNr>
-        <name>app_IBGE_district output</name>
-      </transform>
-    </transforms>
-    <attributes/>
-    <GUI>
-      <xloc>1120</xloc>
-      <yloc>432</yloc>
+      <xloc>880</xloc>
+      <yloc>528</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
