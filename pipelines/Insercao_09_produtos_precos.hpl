@@ -50,52 +50,16 @@ Código da empresa que criou os dados (Matriz)</note>
   </notepads>
   <order>
     <hop>
-      <from>Esvazia a tabela app_products_price</from>
-      <to>Inclui os dados em app_products_price</to>
+      <from>Esvazia e preenche a tabela app_products_price</from>
+      <to>Ajusta os valores de multiplo de venda em app_products_gtin</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <transform>
-    <name>Esvazia a tabela app_products_price</name>
+    <name>Esvazia e preenche a tabela app_products_price</name>
     <type>ExecSql</type>
     <description/>
     <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <arguments>
-</arguments>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
-    <execute_each_row>N</execute_each_row>
-    <insert_field/>
-    <quoteString>N</quoteString>
-    <read_field/>
-    <replace_variables>N</replace_variables>
-    <set_params>N</set_params>
-    <single_statement>Y</single_statement>
-    <sql>SET FOREIGN_KEY_CHECKS = 0;
-TRUNCATE TABLE app_products_price;
-COMMIT;
-TRUNCATE TABLE app_products_price_temp_calc;
-COMMIT;
-SET FOREIGN_KEY_CHECKS = 1;
-</sql>
-    <update_field/>
-    <attributes/>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>192</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Inclui os dados em app_products_price</name>
-    <type>ExecSql</type>
-    <description/>
-    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -115,6 +79,13 @@ SET FOREIGN_KEY_CHECKS = 1;
     <single_statement>Y</single_statement>
     <sql>SET @empresa = ${par_empresa_que_criou};
 
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE app_products_price;
+COMMIT;
+TRUNCATE TABLE app_products_price_temp_calc;
+COMMIT;
+SET FOREIGN_KEY_CHECKS = 1;
+
 INSERT INTO app_products_price( 
 	id,
 	id_company,
@@ -125,8 +96,13 @@ INSERT INTO app_products_price(
 	minimum_margin,
 	margin,
 	maximum_margin,
- purchase_price,
- purchase_cost
+	purchase_price,
+	purchase_cost,
+	icms_credit_for_purchases_r, 
+	icms_st_r,	
+	freight_r, 									
+	ipi_r 											
+
 )
 SELECT DISTINCT
 	NULL AS id, 
@@ -134,12 +110,16 @@ SELECT DISTINCT
 	app_products.id AS id_product,
 	coalesce(vvr_produtos.preco_venda,0), 
 	0, 
-	`status`, 
+	1, 
 	0 AS minimum_margin, 
 	0 AS margin, 
 	0 AS maximum_margin, 
+	coalesce(vvr_produtos.preco_compra,0),
 	coalesce(vvr_produtos.preco_custo,0),
-	coalesce(vvr_produtos.preco_custo,0)
+	vvr_produtos.credito_icms,
+  vvr_produtos.st,
+  coalesce(vvr_produtos.frete,0),
+  vvr_produtos.ipi		      
 FROM
 	app_products
 	INNER JOIN
@@ -150,7 +130,44 @@ COMMIT;</sql>
     <update_field/>
     <attributes/>
     <GUI>
-      <xloc>720</xloc>
+      <xloc>688</xloc>
+      <yloc>192</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Ajusta os valores de multiplo de venda em app_products_gtin</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>UPDATE app_products_gtin
+INNER JOIN app_products
+    ON app_products_gtin.id_product = app_products.id
+INNER JOIN vvr_produtos
+    ON vvr_produtos.codigo_do_produto = app_products.original_cod
+SET
+    app_products_gtin.multiple_sale = vvr_produtos.multiplo_de_venda;
+COMMIT;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>1088</xloc>
       <yloc>192</yloc>
     </GUI>
   </transform>
