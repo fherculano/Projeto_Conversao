@@ -98,8 +98,11 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>Y</replace_variables>
     <set_params>N</set_params>
     <single_statement>N</single_statement>
@@ -110,8 +113,8 @@ INSERT INTO app_products_gtin(id_company, id_product, gtin, gtin_input, gtin_def
 SELECT
 	@empresa as id_company,
 	app_products.id as id_product,
-	app_products.gtin as gtin,
-	app_products.gtin as gtin_input,
+    COALESCE(app_products.gtin, app_products.original_cod) AS gtin,
+    COALESCE(app_products.gtin, app_products.original_cod) AS gtin_input,
 	1 as gtin_default,
 	1 as purchase_multiple,
 	1 as multiple_sale 
@@ -124,6 +127,7 @@ FROM
 
 
 </sql>
+    <update_field/>
     <attributes/>
     <GUI>
       <xloc>560</xloc>
