@@ -53,12 +53,22 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>160</xloc>
-      <yloc>48</yloc>
+      <xloc>208</xloc>
+      <yloc>128</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>Shell</name>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <xloc>848</xloc>
+      <yloc>32</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Shell Extrai Metadata</name>
       <description/>
       <type>SHELL</type>
       <attributes/>
@@ -73,43 +83,43 @@
       <logext/>
       <logfile/>
       <loglevel>Basic</loglevel>
-      <script>@echo off
-setlocal
+      <script>echo [INFO] Gerando dump estrutural...
 
-echo [INFO] Gerando dump da estrutura do banco alcantara_1...
-echo [INFO] Salvando em C:\tmp\estrutura_alcantara.sql
-
-mariadb-dump -h 127.0.0.1 -P 3308 -u root -pYhcJGc1iFeyapBgQ60LipX3u9uksxX5M --ssl=0 --no-data --routines --events --triggers  --single-transaction --skip-lock-tables alcantara_1  > C:\tmp\estrutura_alcantara.sql
+mariadb-dump ^
+-h 127.0.0.1 ^
+-P 3308 ^
+-u root ^
+-p"YhcJGc1iFeyapBgQ60LipX3u9uksxX5M" ^
+--ssl=0 ^
+--no-data ^
+--routines ^
+--events ^
+--triggers ^
+--single-transaction ^
+--skip-lock-tables ^
+alcantara_1 > C:\tmp\estrutura.sql
 
 if %ERRORLEVEL% NEQ 0 (
-  echo [ERRO] Falha ao gerar o dump da estrutura.
-  exit /b 1
+ echo [ERRO] Falha ao gerar dump
+ exit /b 1
 )
 
-echo [SUCESSO] Dump gerado com sucesso em C:\tmp\estrutura_alcantara.sql
+echo [OK] Estrutura preparada.
 
 endlocal
+
+
 </script>
       <set_append_logfile>N</set_append_logfile>
       <set_logfile>N</set_logfile>
       <work_directory/>
       <parallel>N</parallel>
-      <xloc>304</xloc>
-      <yloc>16</yloc>
-      <attributes_hac/>
-    </action>
-    <action>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <xloc>656</xloc>
+      <xloc>368</xloc>
       <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>Shell 2</name>
+      <name>Shell cria a estrutura</name>
       <description/>
       <type>SHELL</type>
       <attributes/>
@@ -119,30 +129,18 @@ endlocal
       <arguments>
 </arguments>
       <exec_per_row>N</exec_per_row>
+      <filename/>
       <insertScript>Y</insertScript>
+      <logext/>
+      <logfile/>
       <loglevel>Basic</loglevel>
-      <script>@echo off
-setlocal
-
-echo [INFO] Iniciando importação da estrutura no banco base_conversoes (porta 3307)...
-
-mariadb -h 127.0.0.1 -P 3307 -u root -pYhcJGc1iFeyapBgQ60LipX3u9uksxX5M --ssl=0 ^
-  --default-character-set=utf8mb4 base_conversoes &lt; C:\tmp\estrutura_alcantara.sql
-
-if %ERRORLEVEL% NEQ 0 (
-  echo [ERRO] Falha durante a importação da estrutura.
-  echo [INFO] Verifique o arquivo C:\tmp\estrutura_alcantara.sql
-  exit /b 1
-)
-
-echo [SUCESSO] Estrutura importada com sucesso no banco base_conversoes!
-
-endlocal</script>
+      <script>mariadb -h127.0.0.1 -P3307 -uroot -p"YhcJGc1iFeyapBgQ60LipX3u9uksxX5M" --ssl=0 --force base_conversoes &lt; C:\tmp\estrutura.sql</script>
       <set_append_logfile>N</set_append_logfile>
       <set_logfile>N</set_logfile>
+      <work_directory/>
       <parallel>N</parallel>
-      <xloc>464</xloc>
-      <yloc>16</yloc>
+      <xloc>608</xloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
   </actions>
@@ -156,20 +154,20 @@ endlocal</script>
     </hop>
     <hop>
       <from>recria_banco_base.hpl</from>
-      <to>Shell</to>
+      <to>Shell Extrai Metadata</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Shell</from>
-      <to>Shell 2</to>
+      <from>Shell Extrai Metadata</from>
+      <to>Shell cria a estrutura</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Shell 2</from>
+      <from>Shell cria a estrutura</from>
       <to>Success</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>

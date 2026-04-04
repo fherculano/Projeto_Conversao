@@ -86,8 +86,11 @@
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>N</single_statement>
@@ -438,7 +441,19 @@ in
 'am3'
 );
 
+
+update vvr_produtos
+set vvr_produtos.unidade_de_venda = 'MILHEI'
+where
+vvr_produtos.unidade_de_venda is null
+or
+vvr_produtos.unidade_de_venda
+in
+(
+'MI'
+);
 </sql>
+    <update_field/>
     <attributes/>
     <GUI>
       <xloc>192</xloc>
