@@ -13,6 +13,8 @@
         "SUPPORTS_TIMESTAMP_DATA_TYPE": "Y",
         "STREAM_RESULTS": "N",
         "EXTRA_OPTION_MARIADB.defaultFetchSize": "500000",
+        "EXTRA_OPTION_MARIADB.useSSL": "false",
+        "EXTRA_OPTION_MARIADB.sslMode": "DISABLED",
         "EXTRA_OPTION_MARIADB.zeroDateTimeBehaviorValue": "CONVERT_TO_NULL",
         "FORCE_IDENTIFIERS_TO_LOWERCASE": "N",
         "PRESERVE_RESERVED_WORD_CASE": "Y",

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workflow>
-  <name>Job_00_Setar_variaveis</name>
+  <name>job_00_setar_variaveis</name>
   <name_sync_with_filename>Y</name_sync_with_filename>
   <description/>
   <extended_description/>
@@ -56,6 +56,36 @@
           <variable_name>par_cod_primeiro_participante</variable_name>
           <variable_type>JVM</variable_type>
           <variable_value>3</variable_value>
+        </field>
+        <field>
+          <variable_name>db_origem_nome</variable_name>
+          <variable_type>JVM</variable_type>
+          <variable_value>alcantara_1</variable_value>
+        </field>
+        <field>
+          <variable_name>db_destino_nome</variable_name>
+          <variable_type>JVM</variable_type>
+          <variable_value>base_conversoes</variable_value>
+        </field>
+        <field>
+          <variable_name>db_origem_host</variable_name>
+          <variable_type>JVM</variable_type>
+          <variable_value>127.0.0.1</variable_value>
+        </field>
+        <field>
+          <variable_name>db_destino_host</variable_name>
+          <variable_type>JVM</variable_type>
+          <variable_value>127.0.0.1</variable_value>
+        </field>
+        <field>
+          <variable_name>db_origem_porta</variable_name>
+          <variable_type>JVM</variable_type>
+          <variable_value>3308</variable_value>
+        </field>
+        <field>
+          <variable_name>db_destino_porta</variable_name>
+          <variable_type>JVM</variable_type>
+          <variable_value>3307</variable_value>
         </field>
       </fields>
       <file_variable_type>JVM</file_variable_type>

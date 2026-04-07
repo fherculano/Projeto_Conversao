@@ -38,7 +38,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PROJECT_HOME}/pipelines/Ajuste_das_unidades.hpl</filename>
+      <filename>${PROJECT_HOME}/pipelines/pipe_ajuste_das_unidades.hpl</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
