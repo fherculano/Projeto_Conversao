@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>insercao_12_vincula_produto_a_fornecedor</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <pipeline_status>0</pipeline_status>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2024/12/26 16:23:18.415</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2024/12/26 16:23:18.415</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <order>
+  </order>
+  <transform>
+    <name>vincula os produtos ao fornecedor principal</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Passo 1: Criar a tabela temporária (simulando o CTE)
+CREATE TEMPORARY TABLE temp_cte AS
+WITH cte_base AS (
+    SELECT
+      (
+        SELECT
+          app_products.id
+        FROM
+          app_products
+        WHERE
+          app_products.original_cod = vvr_produtos.codigo_do_produto
+      ) AS novo_id_produto,
+      (
+        SELECT
+          app_participants.id
+        FROM
+          app_participants
+        WHERE
+          app_participants.original_cod = concat('for_', vvr_fornecedores.codigo_do_fornecedor)
+      ) AS novo_id_fornecedor
+    FROM
+      vvr_produtos
+      INNER JOIN vvr_fornecedores ON vvr_produtos.razao_fornecedor_principal = vvr_fornecedores.Fornecedor
+      INNER JOIN app_participants ON vvr_fornecedores.Fornecedor = app_participants.`name`
+  ),
+  cte_final AS (
+    SELECT
+        MAX(cte_base.novo_id_fornecedor) AS id_fornecedor,
+        cte_base.novo_id_produto
+    FROM
+        cte_base
+    WHERE
+        novo_id_produto IS NOT NULL
+        AND novo_id_fornecedor IS NOT NULL
+    GROUP BY
+        novo_id_produto
+)
+
+SELECT
+	id_fornecedor,
+    novo_id_produto
+FROM
+    cte_final;
+
+-- Passo 2: Atualizar a tabela app_product_additional usando a tabela temporária
+UPDATE app_product_additional
+INNER JOIN temp_cte ON app_product_additional.id_product = temp_cte.novo_id_produto
+SET app_product_additional.id_provider_default = temp_cte.id_fornecedor;
+
+-- Passo 3: Limpar a tabela temporária
+DROP TEMPORARY TABLE IF EXISTS temp_cte;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>112</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>

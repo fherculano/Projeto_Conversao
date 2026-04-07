@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>Insercao_09_produtos_precos</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <pipeline_status>0</pipeline_status>
+    <parameters>
+      <parameter>
+        <name>par_empresa_que_criou</name>
+        <default_value>1</default_value>
+        <description>Código da empresa que criou o Produto</description>
+      </parameter>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2024/12/26 16:23:18.415</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2024/12/26 16:23:18.415</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorred>255</backgroundcolorred>
+      <bordercolorblue>100</bordercolorblue>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorred>100</bordercolorred>
+      <fontbold>N</fontbold>
+      <fontcolorblue>0</fontcolorblue>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorred>0</fontcolorred>
+      <fontitalic>N</fontitalic>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <height>-1</height>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
+      <note>Ao rodar essa transformação preencha os seguintes parametros
+ao iniciar:
+
+Código da empresa que criou os dados (Matriz)</note>
+      <width>345</width>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>Esvazia e preenche a tabela app_products_price</from>
+      <to>Ajusta os valores de multiplo de venda em app_products_gtin</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Esvazia e preenche a tabela app_products_price</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>SET @empresa = ${par_empresa_que_criou};
+
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE app_products_price;
+COMMIT;
+TRUNCATE TABLE app_products_price_temp_calc;
+COMMIT;
+SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO app_products_price( 
+	id,
+	id_company,
+	id_product,
+	sale_price,
+	min_price,
+	status, 
+	minimum_margin,
+	margin,
+	maximum_margin,
+	purchase_price,
+	purchase_cost,
+	icms_credit_for_purchases_r, 
+	icms_st_r,	
+	freight_r, 									
+	ipi_r 											
+
+)
+SELECT DISTINCT
+	NULL AS id, 
+	@empresa AS id_company, 
+	app_products.id AS id_product,
+	coalesce(vvr_produtos.preco_venda,0), 
+	0, 
+	1, 
+	0 AS minimum_margin, 
+	0 AS margin, 
+	0 AS maximum_margin, 
+	coalesce(vvr_produtos.preco_compra,0),
+	coalesce(vvr_produtos.preco_custo,0),
+	vvr_produtos.credito_icms,
+  vvr_produtos.st,
+  coalesce(vvr_produtos.frete,0),
+  vvr_produtos.ipi		      
+FROM
+	app_products
+	INNER JOIN
+	vvr_produtos
+	ON 
+		app_products.original_cod = vvr_produtos.codigo_do_produto;	
+COMMIT;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>192</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Ajusta os valores de multiplo de venda em app_products_gtin</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>UPDATE app_products_gtin
+INNER JOIN app_products
+    ON app_products_gtin.id_product = app_products.id
+INNER JOIN vvr_produtos
+    ON vvr_produtos.codigo_do_produto = app_products.original_cod
+SET
+    app_products_gtin.multiple_sale = vvr_produtos.multiplo_de_venda;
+COMMIT;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>192</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>

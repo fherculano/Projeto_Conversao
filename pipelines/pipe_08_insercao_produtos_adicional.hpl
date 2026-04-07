@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>Insercao_08_produtos_adicional</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <pipeline_status>0</pipeline_status>
+    <parameters>
+      <parameter>
+        <name>par_empresa_que_criou</name>
+        <default_value>1</default_value>
+        <description>Código da empresa que criou o Produto</description>
+      </parameter>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2024/12/26 16:23:18.415</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2024/12/26 16:23:18.415</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorred>255</backgroundcolorred>
+      <bordercolorblue>100</bordercolorblue>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorred>100</bordercolorred>
+      <fontbold>N</fontbold>
+      <fontcolorblue>0</fontcolorblue>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorred>0</fontcolorred>
+      <fontitalic>N</fontitalic>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <height>-1</height>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
+      <note>Ao rodar essa transformação preencha os seguintes parametros
+ao iniciar:
+
+Código da empresa que criou os dados (Matriz)</note>
+      <width>345</width>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>Esvazia a tabela app_product_additional</from>
+      <to>Inclui os dados em app_product_additional</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Esvazia a tabela app_product_additional</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE app_product_additional;
+SET FOREIGN_KEY_CHECKS = 1;
+COMMIT;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>160</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Inclui os dados em app_product_additional</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>SET @empresa = ${par_empresa_que_criou};
+
+
+INSERT INTO app_product_additional (id_company, id_product, warranty, essential, situation, discontinued, purchase_cost,groupproduct,subgroup)
+
+with cte_dados
+AS
+(
+select
+@empresa as id_company ,
+(select app_products.id from app_products where app_products.original_cod = vvr_produtos.codigo_do_produto limit 1) as id_product,
+0 as warranty,
+0 as essential,
+1 as situation,
+0 as discontinued ,
+round(vvr_produtos.preco_custo ,2)  as purchase_cost,
+(SELECT
+	app_product_group.id
+FROM
+	app_product_group
+WHERE
+	app_product_group.title = vvr_produtos.descricao_grupo
+limit 1) as grupo,
+
+(SELECT
+	app_subgroup.id
+FROM
+	app_subgroup
+WHERE
+	app_subgroup.title = vvr_produtos.subgrupo
+		
+		AND app_subgroup.id_group =
+(SELECT
+	app_product_group.id
+FROM
+	app_product_group
+WHERE
+	app_product_group.title = vvr_produtos.descricao_grupo
+limit 1)
+) as subgrupo
+
+from vvr_produtos
+)
+
+
+select 
+cte_dados.id_company,
+cte_dados.id_product,
+cte_dados.warranty,
+cte_dados.essential,
+cte_dados.situation,
+cte_dados.discontinued,
+cte_dados.purchase_cost,
+cte_dados.grupo,
+cte_dados.subgrupo
+from cte_dados
+where
+cte_dados.id_product is not null;
+
+COMMIT;</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>160</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>
