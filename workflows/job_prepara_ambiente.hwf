@@ -63,12 +63,12 @@
       <type>SUCCESS</type>
       <attributes/>
       <parallel>N</parallel>
-      <xloc>656</xloc>
+      <xloc>944</xloc>
       <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>Shell cria a estrutura</name>
+      <name>Shell cria o DUMP</name>
       <description/>
       <type>SHELL</type>
       <attributes/>
@@ -78,7 +78,10 @@
       <arguments>
 </arguments>
       <exec_per_row>N</exec_per_row>
+      <filename/>
       <insertScript>Y</insertScript>
+      <logext/>
+      <logfile/>
       <loglevel>Basic</loglevel>
       <script>@echo off
 setlocal EnableExtensions
@@ -128,6 +131,76 @@ endlocal
       <yloc>48</yloc>
       <attributes_hac/>
     </action>
+    <action>
+      <name>Shell cria a estrutura na base a partir do DUMP</name>
+      <description/>
+      <type>SHELL</type>
+      <attributes/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <arg_from_previous>N</arg_from_previous>
+      <arguments>
+</arguments>
+      <exec_per_row>N</exec_per_row>
+      <filename/>
+      <insertScript>Y</insertScript>
+      <logext/>
+      <logfile/>
+      <loglevel>Basic</loglevel>
+      <script>@echo off
+setlocal EnableExtensions
+
+set "OUTPUT_DIR=${PROJECT_HOME}\dumps"
+set "OUTPUT_SQL=%OUTPUT_DIR%\estrutura_completa_da_origem.sql"
+set "SSH_HOST=72.61.130.215"
+set "SSH_PORT=22"
+set "SSH_USER=root"
+set "REMOTE_SQL=/tmp/estrutura_completa_da_origem.sql"
+
+if not exist "%OUTPUT_SQL%" (
+ echo [ERRO] Dump estrutural nao encontrado em:
+ echo [ERRO] %OUTPUT_SQL%
+ exit /b 1
+)
+
+if "%SSH_HOST%"=="PREENCHER_HOST_SSH" (
+ echo [ERRO] Preencha a variavel SSH_HOST no workflow job_z_teste_wf.hwf
+ exit /b 1
+)
+
+if "%SSH_USER%"=="PREENCHER_USUARIO_SSH" (
+ echo [ERRO] Preencha a variavel SSH_USER no workflow job_z_teste_wf.hwf
+ exit /b 1
+)
+
+echo [INFO] Copiando dump para o servidor Linux...
+scp -P %SSH_PORT% "%OUTPUT_SQL%" %SSH_USER%@%SSH_HOST%:%REMOTE_SQL%
+
+if %ERRORLEVEL% NEQ 0 (
+ echo [ERRO] Falha ao copiar o dump para o servidor Linux.
+ exit /b 1
+)
+
+echo [INFO] Importando estrutura localmente no servidor Linux...
+ssh -p %SSH_PORT% %SSH_USER%@%SSH_HOST% "mariadb --protocol=tcp --host=127.0.0.1 --port=3306 --user=root --password=YhcJGc1iFeyapBgQ60LipX3u9uksxX5M --ssl=0 --force --default-character-set=utf8mb4 base_conversoes &lt; %REMOTE_SQL%"
+
+if %ERRORLEVEL% NEQ 0 (
+ echo [ERRO] Falha na importacao remota da estrutura.
+ exit /b 1
+)
+
+echo [OK] Estrutura importada no servidor Linux.
+
+endlocal
+</script>
+      <set_append_logfile>N</set_append_logfile>
+      <set_logfile>N</set_logfile>
+      <work_directory>${PROJECT_HOME}</work_directory>
+      <parallel>N</parallel>
+      <xloc>688</xloc>
+      <yloc>48</yloc>
+      <attributes_hac/>
+    </action>
   </actions>
   <hops>
     <hop>
@@ -139,13 +212,20 @@ endlocal
     </hop>
     <hop>
       <from>pipe_recria_banco_base.hpl</from>
-      <to>Shell cria a estrutura</to>
+      <to>Shell cria o DUMP</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Shell cria a estrutura</from>
+      <from>Shell cria o DUMP</from>
+      <to>Shell cria a estrutura na base a partir do DUMP</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Shell cria a estrutura na base a partir do DUMP</from>
       <to>Success</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>

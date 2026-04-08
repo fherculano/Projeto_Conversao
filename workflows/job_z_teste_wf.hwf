@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workflow>
-  <name>z_teste_wf</name>
+  <name>job_z_teste_wf</name>
   <name_sync_with_filename>Y</name_sync_with_filename>
   <description/>
   <extended_description/>
@@ -54,7 +54,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>560</xloc>
-      <yloc>384</yloc>
+      <yloc>304</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -63,8 +63,8 @@
       <type>SUCCESS</type>
       <attributes/>
       <parallel>N</parallel>
-      <xloc>1200</xloc>
-      <yloc>288</yloc>
+      <xloc>1008</xloc>
+      <yloc>304</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -78,37 +78,63 @@
       <arguments>
 </arguments>
       <exec_per_row>N</exec_per_row>
+      <filename/>
       <insertScript>Y</insertScript>
+      <logext/>
+      <logfile/>
       <loglevel>Basic</loglevel>
       <script>@echo off
-setlocal
+setlocal EnableExtensions
 
-echo [INFO] Importando estrutura...
+set "OUTPUT_DIR=${PROJECT_HOME}\dumps"
+set "OUTPUT_SQL=%OUTPUT_DIR%\estrutura_completa_da_origem.sql"
+set "SSH_HOST=72.61.130.215"
+set "SSH_PORT=22"
+set "SSH_USER=root"
+set "REMOTE_SQL=/tmp/estrutura_completa_da_origem.sql"
 
-mariadb ^
--h 127.0.0.1 ^
--P 3307 ^
--u root ^
--p"YhcJGc1iFeyapBgQ60LipX3u9uksxX5M" ^
---ssl=0 ^
---force ^
---default-character-set=utf8mb4 ^
-base_conversoes &lt; C:\tmp\estrutura.sql
-
-if %ERRORLEVEL% NEQ 0 (
- echo [ERRO] Falha na importação
+if not exist "%OUTPUT_SQL%" (
+ echo [ERRO] Dump estrutural nao encontrado em:
+ echo [ERRO] %OUTPUT_SQL%
  exit /b 1
 )
 
-echo [OK] Estrutura importada.
+if "%SSH_HOST%"=="PREENCHER_HOST_SSH" (
+ echo [ERRO] Preencha a variavel SSH_HOST no workflow job_z_teste_wf.hwf
+ exit /b 1
+)
+
+if "%SSH_USER%"=="PREENCHER_USUARIO_SSH" (
+ echo [ERRO] Preencha a variavel SSH_USER no workflow job_z_teste_wf.hwf
+ exit /b 1
+)
+
+echo [INFO] Copiando dump para o servidor Linux...
+scp -P %SSH_PORT% "%OUTPUT_SQL%" %SSH_USER%@%SSH_HOST%:%REMOTE_SQL%
+
+if %ERRORLEVEL% NEQ 0 (
+ echo [ERRO] Falha ao copiar o dump para o servidor Linux.
+ exit /b 1
+)
+
+echo [INFO] Importando estrutura localmente no servidor Linux...
+ssh -p %SSH_PORT% %SSH_USER%@%SSH_HOST% "mariadb --protocol=tcp --host=127.0.0.1 --port=3306 --user=root --password=YhcJGc1iFeyapBgQ60LipX3u9uksxX5M --ssl=0 --force --default-character-set=utf8mb4 base_conversoes &lt; %REMOTE_SQL%"
+
+if %ERRORLEVEL% NEQ 0 (
+ echo [ERRO] Falha na importacao remota da estrutura.
+ exit /b 1
+)
+
+echo [OK] Estrutura importada no servidor Linux.
 
 endlocal
 </script>
       <set_append_logfile>N</set_append_logfile>
       <set_logfile>N</set_logfile>
+      <work_directory>${PROJECT_HOME}</work_directory>
       <parallel>N</parallel>
-      <xloc>848</xloc>
-      <yloc>384</yloc>
+      <xloc>800</xloc>
+      <yloc>304</yloc>
       <attributes_hac/>
     </action>
   </actions>
