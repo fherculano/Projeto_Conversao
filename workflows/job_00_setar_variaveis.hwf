@@ -89,10 +89,19 @@
         </field>
       </fields>
       <file_variable_type>JVM</file_variable_type>
-      <filename/>
       <replacevars>Y</replacevars>
       <parallel>N</parallel>
       <xloc>192</xloc>
+      <yloc>48</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <xloc>400</xloc>
       <yloc>48</yloc>
       <attributes_hac/>
     </action>
@@ -104,6 +113,13 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Setar Variaveis do Projeto</from>
+      <to>Success</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>

@@ -2,7 +2,7 @@
   "virtualPath": "",
   "rdbms": {
     "MARIADB": {
-      "databaseName": "${db_origem_nome}",
+      "databaseName": "alcantara_1",
       "pluginId": "MARIADB",
       "accessType": 0,
       "hostname": "127.0.0.1",
@@ -14,12 +14,12 @@
         "SUPPORTS_TIMESTAMP_DATA_TYPE": "Y",
         "STREAM_RESULTS": "N",
         "EXTRA_OPTION_MARIADB.defaultFetchSize": "500000",
-        "EXTRA_OPTION_MARIADB.useSSL": "false",
-        "EXTRA_OPTION_MARIADB.sslMode": "DISABLED",
         "EXTRA_OPTION_MARIADB.zeroDateTimeBehaviorValue": "CONVERT_TO_NULL",
         "FORCE_IDENTIFIERS_TO_LOWERCASE": "N",
+        "EXTRA_OPTION_MARIADB.useSSL": "false",
         "PRESERVE_RESERVED_WORD_CASE": "Y",
         "FORCE_IDENTIFIERS_TO_UPPERCASE": "N",
+        "EXTRA_OPTION_MARIADB.sslMode": "DISABLED",
         "QUOTE_ALL_FIELDS": "N",
         "EXTRA_OPTION_MARIADB.allowMultiQueries": "true",
         "SUPPORTS_BOOLEAN_DATA_TYPE": "Y",

@@ -54,7 +54,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>208</xloc>
-      <yloc>128</yloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -63,8 +63,8 @@
       <type>SUCCESS</type>
       <attributes/>
       <parallel>N</parallel>
-      <xloc>848</xloc>
-      <yloc>32</yloc>
+      <xloc>656</xloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -78,33 +78,40 @@
       <arguments>
 </arguments>
       <exec_per_row>N</exec_per_row>
-      <filename/>
       <insertScript>Y</insertScript>
-      <logext/>
-      <logfile/>
       <loglevel>Basic</loglevel>
       <script>@echo off
 setlocal EnableExtensions
 
+set "DB_NAME=alcantara_1"
 set "OUTPUT_DIR=${PROJECT_HOME}\dumps"
-set "OUTPUT_SQL=%OUTPUT_DIR%\alcantara_1_estrutura_completa.sql"
+set "OUTPUT_SQL=%OUTPUT_DIR%\estrutura_completa_da_origem.sql"
+set "TEMP_SQL=%OUTPUT_DIR%\estrutura_completa_da_origem.tmp.sql"
 
 if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
 if exist "%OUTPUT_SQL%" del /f /q "%OUTPUT_SQL%"
+if exist "%TEMP_SQL%" del /f /q "%TEMP_SQL%"
 
 echo [INFO] Gerando dump completo da estrutura sem dados...
-mariadb-dump --protocol=tcp --host=127.0.0.1 --port=3308 --user=root --password=YhcJGc1iFeyapBgQ60LipX3u9uksxX5M --ssl=0 --default-character-set=utf8mb4 --skip-tz-utc --no-data --routines --triggers --events --single-transaction alcantara_1 > "%OUTPUT_SQL%"
+mariadb-dump --protocol=tcp --host=127.0.0.1 --port=3308 --user=root --password=YhcJGc1iFeyapBgQ60LipX3u9uksxX5M --ssl=0 --default-character-set=utf8mb4 --skip-tz-utc --no-data --routines --triggers --events --single-transaction "%DB_NAME%" > "%OUTPUT_SQL%"
 
 if %ERRORLEVEL% NEQ 0 (
  echo [ERRO] Falha ao gerar o dump completo da estrutura.
  exit /b 1
 )
 
-echo [INFO] Normalizando timezone no dump final...
-powershell -NoProfile -ExecutionPolicy Bypass -Command "(Get-Content -Raw '%OUTPUT_SQL%').Replace('America/Sao_Paulo','-03:00') | Set-Content -Encoding UTF8 '%OUTPUT_SQL%'"
+echo [INFO] Removendo referencias ao schema no dump gerado...
+sed -E "/^-- Host: .* Database: %DB_NAME%$/d; /^-- Dumping (events|routines) for database '%DB_NAME%'$/d; s/`%DB_NAME%`\.`/`/g" "%OUTPUT_SQL%" > "%TEMP_SQL%"
 
 if %ERRORLEVEL% NEQ 0 (
- echo [ERRO] Falha ao normalizar timezone no dump final.
+ echo [ERRO] Falha ao sanitizar o dump gerado.
+ exit /b 1
+)
+
+move /y "%TEMP_SQL%" "%OUTPUT_SQL%" >nul
+
+if %ERRORLEVEL% NEQ 0 (
+ echo [ERRO] Falha ao substituir o dump sanitizado.
  exit /b 1
 )
 
@@ -117,8 +124,8 @@ endlocal
       <set_logfile>N</set_logfile>
       <work_directory>${PROJECT_HOME}</work_directory>
       <parallel>N</parallel>
-      <xloc>544</xloc>
-      <yloc>128</yloc>
+      <xloc>432</xloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
   </actions>

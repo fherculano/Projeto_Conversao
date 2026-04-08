@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
-    <name>povoa as tabelas iniciais</name>
+    <name>pipe_povoa_tabelas_iniciais</name>
     <name_sync_with_filename>Y</name_sync_with_filename>
     <description/>
     <extended_description/>
     <pipeline_version/>
     <pipeline_type>Normal</pipeline_type>
+    <pipeline_status>0</pipeline_status>
     <parameters>
+      <parameter>
+        <name>par_empresa_que_criou</name>
+        <default_value>1</default_value>
+        <description>codigo da empresa</description>
+      </parameter>
     </parameters>
     <capture_transform_performance>N</capture_transform_performance>
     <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
@@ -41,13 +47,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>app_anp 2</from>
+      <from>app_bank</from>
       <to>app_bank_output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Esvazia app_bank</from>
-      <to>app_anp 2</to>
+      <to>app_bank</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -138,6 +144,31 @@
     <hop>
       <from>permissions input</from>
       <to>permissions output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Esvazia app_ibscbs_classtrib</from>
+      <to>app_ibscbs_classtrib input 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>app_ibscbs_classtrib input 2</from>
+      <to>app_ibscbs_classtrib output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Esvazia app_classtrib_group</from>
+      <to>app_classtrib_group input</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>app_classtrib_group input</from>
+      <to>app_classtrib_group output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Inclui app_brand</from>
+      <to>Inclui app_product_brand</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -406,6 +437,80 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     </GUI>
   </transform>
   <transform>
+    <name>Esvazia app_classtrib_group</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE app_classtrib_group;
+
+COMMIT;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;
+
+COMMIT;</sql>
+    <attributes/>
+    <GUI>
+      <xloc>1104</xloc>
+      <yloc>224</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Esvazia app_ibscbs_classtrib</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE app_ibscbs_classtrib;
+
+COMMIT;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;
+
+COMMIT;</sql>
+    <attributes/>
+    <GUI>
+      <xloc>1104</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
+  <transform>
     <name>Esvazia app_moviment_category</name>
     <type>ExecSql</type>
     <description/>
@@ -502,6 +607,156 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <GUI>
       <xloc>592</xloc>
       <yloc>432</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Esvazia permissions</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <quoteString>N</quoteString>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE permissions;
+
+COMMIT;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;
+
+COMMIT;</sql>
+    <attributes/>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>544</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Inclui app_brand</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE app_brand;
+
+COMMIT;
+
+INSERT INTO app_brand (`id_company`, `brand`)
+SELECT DISTINCT
+  ${par_empresa_que_criou},
+	vvr_produtos.nome_da_marca
+FROM
+	vvr_produtos
+HAVING 
+vvr_produtos.nome_da_marca is not null;	
+
+COMMIT;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;
+
+COMMIT;
+
+
+</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>1104</xloc>
+      <yloc>336</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Inclui app_product_brand</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>Y</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>-- Desabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Limpa as tabelas e reseta o autoincremento
+TRUNCATE TABLE app_product_brand;
+
+COMMIT;
+
+
+INSERT INTO app_product_brand (id_company, id_brand, id_product)
+SELECT DISTINCT
+  ${par_empresa_que_criou},
+	(SELECT app_brand.id FROM app_brand WHERE app_brand.brand = vvr_produtos.nome_da_marca LIMIT 1),
+  (SELECT id FROM app_products WHERE app_products.original_cod = vvr_produtos.codigo_do_produto LIMIT 1)
+
+FROM
+	vvr_produtos
+WHERE
+  vvr_produtos.nome_da_marca is not null;
+
+COMMIT;
+
+-- Reabilita a verificação de chaves estrangeiras
+SET FOREIGN_KEY_CHECKS = 1;
+
+COMMIT;
+
+
+</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>1392</xloc>
+      <yloc>336</yloc>
     </GUI>
   </transform>
   <transform>
@@ -688,28 +943,6 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     </GUI>
   </transform>
   <transform>
-    <name>app_anp 2</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DB_PROD_CONVERSAO</connection>
-    <execute_each_row>N</execute_each_row>
-    <limit>0</limit>
-    <sql>SELECT * FROM app_bank;</sql>
-    <variables_active>N</variables_active>
-    <attributes/>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>160</yloc>
-    </GUI>
-  </transform>
-  <transform>
     <name>app_anp_input</name>
     <type>TableInput</type>
     <description/>
@@ -768,6 +1001,28 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     <GUI>
       <xloc>368</xloc>
       <yloc>448</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>app_bank</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_PROD_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_bank;</sql>
+    <variables_active>N</variables_active>
+    <attributes/>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>160</yloc>
     </GUI>
   </transform>
   <transform>
@@ -993,6 +1248,134 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     </GUI>
   </transform>
   <transform>
+    <name>app_classtrib_group output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
+    <commit>1000</commit>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_classtrib_group</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>1392</xloc>
+      <yloc>224</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>app_classtrib_group input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_PROD_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_classtrib_group;</sql>
+    <variables_active>N</variables_active>
+    <attributes/>
+    <GUI>
+      <xloc>1248</xloc>
+      <yloc>256</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>app_ibscbs_classtrib input 2</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DB_PROD_CONVERSAO</connection>
+    <execute_each_row>N</execute_each_row>
+    <limit>0</limit>
+    <sql>SELECT * FROM app_ibscbs_classtrib;</sql>
+    <variables_active>N</variables_active>
+    <attributes/>
+    <GUI>
+      <xloc>1248</xloc>
+      <yloc>176</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>app_ibscbs_classtrib output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <add_columns>N</add_columns>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <change_column_types>N</change_column_types>
+    <commit>1000</commit>
+    <connection>DB_DEV_CONVERSAO</connection>
+    <drop_columns>N</drop_columns>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>base_conversoes</schema>
+    <specify_fields>N</specify_fields>
+    <table>app_ibscbs_classtrib</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>1392</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
+  <transform>
     <name>app_moviment_category input</name>
     <type>TableInput</type>
     <description/>
@@ -1176,47 +1559,6 @@ SET FOREIGN_KEY_CHECKS = 1;</sql>
     </GUI>
   </transform>
   <transform>
-    <name>Esvazia permissions</name>
-    <type>ExecSql</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <arguments>
-</arguments>
-    <connection>DB_DEV_CONVERSAO</connection>
-    <delete_field/>
-    <execute_each_row>N</execute_each_row>
-    <insert_field/>
-    <quoteString>N</quoteString>
-    <read_field/>
-    <replace_variables>N</replace_variables>
-    <set_params>N</set_params>
-    <single_statement>Y</single_statement>
-    <sql>-- Desabilita a verificação de chaves estrangeiras
-SET FOREIGN_KEY_CHECKS = 0;
-
--- Limpa as tabelas e reseta o autoincremento
-TRUNCATE TABLE permissions;
-
-COMMIT;
-
--- Reabilita a verificação de chaves estrangeiras
-SET FOREIGN_KEY_CHECKS = 1;
-
-COMMIT;</sql>
-    <update_field/>
-    <attributes/>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>544</yloc>
-    </GUI>
-  </transform>
-  <transform>
     <name>permissions input</name>
     <type>TableInput</type>
     <description/>
@@ -1262,14 +1604,11 @@ COMMIT;</sql>
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
     <return_keys>N</return_keys>
     <schema>base_conversoes</schema>
     <specify_fields>N</specify_fields>
     <table>permissions</table>
-    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>Y</truncate>
