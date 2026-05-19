@@ -89,6 +89,7 @@
         </field>
       </fields>
       <file_variable_type>JVM</file_variable_type>
+      <filename/>
       <replacevars>Y</replacevars>
       <parallel>N</parallel>
       <xloc>192</xloc>
