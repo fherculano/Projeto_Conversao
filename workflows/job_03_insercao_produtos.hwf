@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workflow>
-  <name>Job_03_Inserção_dos_produtos</name>
+  <name>job_03_insercao_produtos</name>
   <name_sync_with_filename>Y</name_sync_with_filename>
   <description/>
   <extended_description/>
@@ -28,7 +28,7 @@
       <weekDay>1</weekDay>
       <parallel>N</parallel>
       <xloc>80</xloc>
-      <yloc>16</yloc>
+      <yloc>0</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -38,7 +38,7 @@
       <attributes/>
       <parallel>N</parallel>
       <xloc>1248</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -64,7 +64,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>80</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -79,8 +79,15 @@
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
       <filename>${PROJECT_HOME}/pipelines/pipe_02_insercao_gtin.hpl</filename>
+      <logext/>
+      <logfile/>
       <loglevel>Basic</loglevel>
       <parameters>
+        <parameter>
+          <name>par_empresa_que_criou</name>
+          <stream_name/>
+          <value/>
+        </parameter>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
       <params_from_previous>N</params_from_previous>
@@ -90,7 +97,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>192</xloc>
-      <yloc>160</yloc>
+      <yloc>144</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -116,7 +123,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>320</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -142,7 +149,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>416</xloc>
-      <yloc>160</yloc>
+      <yloc>144</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -168,7 +175,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>544</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -194,7 +201,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>688</xloc>
-      <yloc>160</yloc>
+      <yloc>144</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -220,7 +227,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>832</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -246,7 +253,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>976</xloc>
-      <yloc>160</yloc>
+      <yloc>144</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -272,7 +279,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
       <xloc>1088</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
       <attributes_hac/>
     </action>
   </actions>

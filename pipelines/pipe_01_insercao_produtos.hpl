@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
-    <name>Insercao_01_Produtos</name>
+    <name>pipe_01_insercao_produtos</name>
     <name_sync_with_filename>Y</name_sync_with_filename>
     <description/>
     <extended_description/>
@@ -122,14 +122,20 @@ app_companies, app_companies_group e app_company_group</note>
     <arguments>
 </arguments>
     <connection>DB_DEV_CONVERSAO</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>Y</single_statement>
-    <sql>SET FOREIGN_KEY_CHECKS = 0;
+    <sql>COMMIT;
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE app_products; 
-SET FOREIGN_KEY_CHECKS = 1;</sql>
+SET FOREIGN_KEY_CHECKS = 1;
+</sql>
+    <update_field/>
     <attributes/>
     <GUI>
       <xloc>400</xloc>
